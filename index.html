@@ -4,161 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>İman Power FC | İman Power</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#10b981">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2=family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #020617;
-            --glass: rgba(15, 23, 42, 0.85);
-            --glass-bright: rgba(30, 41, 59, 0.7);
+            --glass: rgba(15, 23, 42, 0.95);
             --accent: #10b981;
-            --accent-glow: rgba(16, 185, 129, 0.4);
+            --accent-glow: rgba(16, 185, 129, 0.5);
             --text: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: rgba(16, 185, 129, 0.25);
-            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --border: rgba(16, 185, 129, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; width: 100vw; min-height: 100vh; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
+        /* --- GİRİŞ EKRANI --- */
         #auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-        .auth-card { background: var(--glass); padding: 40px; border-radius: 30px; border: 2px solid var(--accent); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 40px var(--accent-glow); backdrop-filter: blur(10px); }
-        .auth-card img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 20px; }
+        .auth-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 2px solid var(--accent); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 30px var(--accent-glow); }
+        .auth-card img { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--accent); margin-bottom: 20px; }
 
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-        .logo-box { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: 900; color: var(--accent); cursor: pointer; text-shadow: 0 0 10px var(--accent-glow); }
-        .logo-box img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); }
-        nav { width: auto; overflow: visible; }
-        nav ul { display: flex; list-style: none; gap: 5px; flex-wrap: wrap; }
-        nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.65rem; padding: 10px 12px; border-radius: 10px; transition: 0.3s; text-transform: uppercase; white-space: nowrap; border: 1px solid transparent; }
-        nav a:hover, nav a.active { background: rgba(16, 185, 129, 0.15); color: var(--accent); border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 10px rgba(16, 185, 129, 0.1); }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 10px; padding: 0.8rem 1rem; }
-            nav { width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-            nav::-webkit-scrollbar { display: none; }
-            nav ul { flex-wrap: nowrap; padding-bottom: 5px; }
-        }
-
-        section { padding: 140px 2rem 60px; max-width: 1300px; margin: 0 auto; display: none; min-height: 100vh; }
-        section.active { display: block; animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .title { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); letter-spacing: 2px; }
+        /* --- HEADER & NAV --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(2,6,23,0.95); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .logo-box { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: 900; color: var(--accent); cursor: pointer; }
+        .logo-box img { width: 40px; height: 40px; border-radius: 50%; }
+        nav ul { display: flex; list-style: none; gap: 5px; }
+        nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.75rem; padding: 8px 12px; border-radius: 8px; transition: 0.3s; }
+        nav a:hover, nav a.active { background: var(--accent); color: #000; }
 
         @media (max-width: 768px) {
-            section { padding: 160px 1rem 40px; }
-            .title { font-size: 1.8rem; margin-bottom: 2rem; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            nav { width: 100%; overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
+            nav ul { gap: 2px; }
         }
 
-        #home-content { text-align: center; padding-top: 30px; }
-        #home-content img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 25px; box-shadow: 0 0 40px var(--accent-glow); animation: pulseGlow 3s infinite alternate; }
-        @keyframes pulseGlow { from { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); } to { box-shadow: 0 0 45px rgba(16, 185, 129, 0.6); } }
-        #home-content h1 { font-family: 'Orbitron'; font-size: 4rem; margin-bottom: 10px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
+        /* --- SECTIONS --- */
+        section { padding: 120px 20px 60px; max-width: 1200px; margin: 0 auto; display: none; min-height: 100vh; }
+        section.active { display: block; }
+        .title { font-family: 'Orbitron'; font-size: 2rem; text-align: center; margin-bottom: 40px; color: var(--accent); }
+
+        /* --- HOME --- */
+        #home-content { text-align: center; padding-top: 40px; }
+        #home-content img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 20px; box-shadow: 0 0 20px var(--accent-glow); }
+        #home-content h1 { font-family: 'Orbitron'; font-size: 3rem; margin-bottom: 10px; }
+
+        /* --- CARDS & GRID --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--border); position: relative; }
+        .badge { position: absolute; top: 15px; right: 15px; font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; font-weight: 800; }
+
+        /* --- SAHA --- */
+        .pitch-container { width: 100%; overflow-x: auto; padding: 10px 0; }
+        .pitch { width: 500px; height: 700px; background: #166534; margin: 0 auto; border: 3px solid #fff; border-radius: 10px; position: relative; }
+        .player { position: absolute; transform: translate(-50%, -50%); text-align: center; width: 80px; }
+        .shirt { width: 45px; height: 45px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: #000; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .p-name { background: #000; font-size: 0.7rem; padding: 2px 6px; border-radius: 5px; margin-top: 3px; border: 1px solid var(--border); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        /* --- GELİŞMİŞ CHAT TASARIMI (BOZULMADAN) --- */
+        .chat-area { height: 500px; background: var(--glass); border-radius: 15px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+        #chat-msgs { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
         
-        @media (max-width: 768px) {
-            #home-content h1 { font-size: 2.4rem; }
-            #home-content img { width: 140px; height: 140px; }
-        }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        
-        /* Son Dakika Temalı Haber Kartları */
-        .haber-list-container { display: flex; flex-direction: column; gap: 30px; }
-        .haber-card { background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
-        @media (min-width: 768px) { .haber-card { flex-direction: row; min-height: 240px; } }
-        .haber-card:hover { border-color: #ef4444; transform: translateY(-5px); box-shadow: 0 12px 40px rgba(239, 68, 68, 0.2); }
-        .haber-body { padding: 30px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .haber-badge-flash { display: inline-block; background: #ef4444; color: #fff; font-family: 'Orbitron'; font-weight: 900; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; width: fit-content; margin-bottom: 10px; letter-spacing: 1px; animation: flashGlow 1.5s infinite alternate; }
-        @keyframes flashGlow { from { opacity: 0.7; box-shadow: 0 0 5px rgba(239, 68, 68, 0.5); } to { opacity: 1; box-shadow: 0 0 15px rgba(239, 68, 68, 0.9); } }
-        .haber-body h3 { font-family: 'Orbitron'; font-size: 1.6rem; margin-bottom: 12px; color: #fff; line-height: 1.3; font-weight: 800; }
-        .haber-body p { font-size: 1rem; opacity: 0.9; line-height: 1.6; color: #e2e8f0; margin-bottom: 15px; white-space: pre-line; }
-        .card-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
-
-        /* Son Dakika Temalı Duyuru Kartları */
-        .duyuru-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .duyuru-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid #f59e0b; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); }
-        .duyuru-card-style:hover { transform: translateY(-4px); border-color: #f59e0b; box-shadow: 0 8px 30px rgba(245, 158, 11, 0.25); }
-        .duyuru-badge-flash { display: inline-block; background: #f59e0b; color: #000; font-family: 'Orbitron'; font-weight: 900; font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; letter-spacing: 1px; }
-        .duyuru-card-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #f8fafc; margin-bottom: 10px; font-weight: 800; }
-
-        .transfer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .transfer-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 5px solid #3b82f6; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
-        .transfer-card-style:hover { transform: translateY(-4px); border-color: #3b82f6; box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15); }
-        .transfer-badge { position: absolute; top: 20px; right: 20px; padding: 4px 12px; border-radius: 30px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-        .tr-ilgileniyor { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid #3b82f6; }
-        .tr-gorusme { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
-        .tr-alindi { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
-
-        .ekip-container { display: flex; flex-direction: column; gap: 40px; }
-        .kurucu-row { display: grid; grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; width: 100%; }
-        .yonetici-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .uye-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
-        .ekip-card { background: var(--glass); border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); text-align: center; position: relative; overflow: hidden; }
-        .ekip-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; }
-        
-        .kurucu-style { padding: 40px; border: 2px solid #fbbf24; box-shadow: 0 0 25px rgba(251, 191, 36, 0.15); }
-        .kurucu-style::before { background: #fbbf24; }
-        .kurucu-style h3 { font-size: 1.8rem; font-family: 'Orbitron'; color: #fbbf24; }
-        
-        .yonetici-style { padding: 30px; border: 1px solid #38bdf8; }
-        .yonetici-style::before { background: #38bdf8; }
-        .yonetici-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #38bdf8; }
-        
-        .personel-style { padding: 25px; border: 1px solid #a78bfa; }
-        .personel-style::before { background: #a78bfa; }
-        .personel-style h3 { font-size: 1.2rem; font-family: 'Orbitron'; color: #a78bfa; }
-
-        .pitch-container { width: 100%; display: flex; justify-content: center; overflow: hidden; padding: 10px 0; }
-        .pitch { width: 100%; max-width: 520px; height: 740px; background: #064e3b; margin: 0 auto; border: 4px solid #fff; border-radius: 15px; position: relative; background-image: repeating-linear-gradient(0deg, #064e3b, #064e3b 65px, #065f46 65px, #065f46 130px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-        @media (max-width: 540px) { .pitch { transform: scale(0.75); margin-bottom: -180px; transform-origin: top center; } }
-        @media (max-width: 400px) { .pitch { transform: scale(0.62); margin-bottom: -270px; transform-origin: top center; } }
-
-        .player { position: absolute; transform: translate(-50%, -50%); text-align: center; width: 90px; transition: all 0.5s ease; }
-        .shirt { width: 52px; height: 52px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-shadow: 1px 1px 2px #000; }
-        .p-name { background: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 10px; margin-top: 5px; border: 1px solid var(--accent); font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-        /* Kimin Kimi Etiketlediği Belli Olan Chat Düzeni */
-        .chat-area { height: 550px; background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--card-shadow); backdrop-filter: blur(10px); position: relative; }
-        @media (max-width: 768px) { .chat-area { height: 450px; } }
-        #chat-msgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        
-        .msg { background: rgba(255,255,255,0.03); padding: 12px 16px; border-radius: 16px; border-left: 4px solid #475569; transition: 0.2s; word-wrap: break-word; }
-        .msg:hover { background: rgba(255,255,255,0.06); }
-        .msg.me { border-left-color: var(--accent); background: rgba(16, 185, 129, 0.03); }
-        .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; margin-bottom: 3px; cursor: pointer; display: inline-block; }
+        .msg { background: rgba(255,255,255,0.02); padding: 10px 14px; border-radius: 10px; border-left: 3px solid #475569; word-wrap: break-word; }
+        .msg.me { border-left-color: var(--accent); background: rgba(16, 185, 129, 0.02); }
+        .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; cursor: pointer; display: inline-block; }
         .msg-user:hover { text-decoration: underline; }
         
-        .mention-info-bar { font-size: 0.7rem; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 700; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(245, 158, 11, 0.2); }
-        .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 6px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.4); display: inline-block; margin: 0 2px; }
-        .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.06) !important; animation: pulseMention 2s infinite alternate; }
-        @keyframes pulseMention { from { box-shadow: inset 4px 0 0 #f59e0b; } to { box-shadow: inset 4px 0 15px rgba(245, 158, 11, 0.2); } }
+        /* Kimin Kimi Etiketlediğini Gösteren Yeni Şeritler */
+        .mention-info-bar { font-size: 0.7rem; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 3px 8px; border-radius: 5px; font-weight: 700; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 1px 4px; border-radius: 4px; font-weight: 700; }
+        .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05) !important; }
 
-        #mention-suggestions { position: absolute; bottom: 80px; left: 15px; right: 15px; background: #0f172a; border: 1px solid var(--accent); border-radius: 12px; max-height: 150px; overflow-y: auto; display: none; z-index: 100; box-shadow: 0 -5px 25px rgba(0,0,0,0.5); }
-        .suggestion-item { padding: 10px 15px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .suggestion-item:hover { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        #mention-suggestions { position: absolute; bottom: 70px; left: 15px; right: 15px; background: #0f172a; border: 1px solid var(--accent); border-radius: 10px; max-height: 120px; overflow-y: auto; display: none; z-index: 100; }
+        .suggestion-item { padding: 8px 12px; cursor: pointer; font-size: 0.85rem; }
+        .suggestion-item:hover { background: var(--accent); color: #000; }
 
-        input, select, textarea { width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: #0f172a; color: white; font-size: 0.95rem; transition: 0.3s; }
-        input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
-        textarea { height: 120px; resize: none; }
-        
-        .btn { padding: 14px; border: none; border-radius: 12px; color: white; font-weight: 800; cursor: pointer; background: var(--accent); width: 100%; transition: 0.3s; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.5px; }
-        .btn:hover { filter: brightness(1.15); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-1px); }
-        
-        .card { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
-        .card h3 { font-family: 'Orbitron'; font-size: 1.2rem; margin-bottom: 15px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        /* --- FORMS & BUTTONS --- */
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #0f172a; color: white; }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
+        textarea { height: 80px; }
+        .btn { padding: 12px; border: none; border-radius: 8px; color: #000; font-weight: 800; cursor: pointer; background: var(--accent); width: 100%; transition: 0.3s; }
+        .btn:hover { filter: brightness(1.2); }
 
-        .live-support-box { background: var(--glass); max-width: 650px; margin: 0 auto; padding: 40px; border-radius: 24px; border: 2px solid #3b82f6; text-align: center; box-shadow: 0 10px 35px rgba(59, 130, 246, 0.15); backdrop-filter: blur(10px); }
-        @media (max-width: 768px) { .live-support-box { padding: 25px 20px; } }
-
-        .user-list-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
-        .user-log-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 8px; border-radius: 10px; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
-        .user-item-row { display: flex; flex-direction: column; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 6px; font-size: 0.8rem; border-left: 3px solid #64748b; }
-        .admin-box-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        /* --- DESTEK & CANLI PLAYLIST SCROLLERS --- */
+        .user-list-scroller { max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 8px; margin-bottom: 10px; }
+        .user-log-scroller { max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 8px; font-size: 0.75rem; }
+        .user-item-row { padding: 6px; background: rgba(255,255,255,0.01); border-radius: 5px; margin-bottom: 4px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -168,13 +98,13 @@
     <div id="auth-screen">
         <div class="auth-card">
             <img src="logo.png" alt="Logo" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
-            <h2 id="auth-title" style="margin-bottom:20px; font-family:'Orbitron'; color:var(--accent); letter-spacing: 2px;">SİSTEME GİRİŞ</h2>
+            <h2 id="auth-title" style="margin-bottom:20px; font-family:'Orbitron'; color:var(--accent);">SİSTEME GİRİŞ</h2>
             <input type="text" id="u-in" placeholder="Kullanıcı Adı">
             <input type="password" id="p-in" placeholder="Şifre">
             <button class="btn" id="auth-btn" onclick="handleAuth()">GİRİŞ YAP</button>
             
-            <div id="auth-info-box" style="margin-top:20px; padding:12px; border-radius:12px; background:rgba(16, 185, 129, 0.05); border:1px dashed var(--border); font-size:0.8rem; line-height:1.4; color:#94a3b8; text-align:center;">
-                🔒 <b style="color:var(--accent);">Kayıtlar Kapatılmıştır!</b><br>
+            <div id="auth-info-box" style="margin-top:15px; padding:10px; border-radius:10px; background:rgba(16, 185, 129, 0.05); border:1px dashed var(--border); font-size:0.75rem; color:#94a3b8;">
+                🔒 <b>Kayıtlar Kapatılmıştır!</b><br>
                 Sisteme dışarıdan üye alımı durdurulmuştur. Sadece yönetim tarafından eklenen güvenli hesaplar giriş yapabilir.
             </div>
         </div>
@@ -202,21 +132,19 @@
         <div id="home-content">
             <img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
             <h1>BERAT CİHAD YETEN</h1>
-            <p style="color:var(--accent); font-weight:900; letter-spacing:4px; font-size: 1.3rem;">KURUCU VE BAŞKAN</p>
-            <p style="font-style:italic; margin-top:25px; font-size: 1.5rem; color: #94a3b8; font-weight:600;">"Sahada İman, Kalpte Güç, Hedef Şampiyonluk!"</p>
+            <p style="color:var(--accent); font-weight:900; letter-spacing:2px;">KURUCU VE BAŞKAN</p>
+            <p style="font-style:italic; margin-top:20px; opacity:0.8;">"Sahada İman, Kalpte Güç, Hedef Şampiyonluk!"</p>
         </div>
     </section>
 
     <section id="haber">
         <h2 class="title">KULÜPTEN HABERLER</h2>
-        <div id="haber-list" class="haber-list-container"></div>
+        <div id="haber-list" class="grid"></div>
     </section>
 
     <section id="kadro">
         <h2 class="title">SAHA DİZİLİMİ (4-4-2)</h2>
-        <div class="pitch-container">
-            <div class="pitch" id="saha"></div>
-        </div>
+        <div class="pitch-container"><div class="pitch" id="saha"></div></div>
     </section>
 
     <section id="sohbet">
@@ -224,60 +152,54 @@
         <div class="chat-area">
             <div id="chat-msgs"></div>
             <div id="mention-suggestions"></div>
-            <div style="display:flex; padding:15px; gap:10px; background:rgba(0,0,0,0.4);">
+            <div style="display:flex; padding:10px; gap:5px; background:rgba(0,0,0,0.2);">
                 <input type="text" id="m-in" placeholder="Mesaj gönder... (Etiketlemek için @ yazın)" style="margin:0;" oninput="handleChatInput(this)">
-                <button class="btn" style="width:120px;" onclick="send()">GÖNDER</button>
+                <button class="btn" style="width:100px;" onclick="send()">GÖNDER</button>
             </div>
         </div>
     </section>
 
     <section id="duyuru">
         <h2 class="title">KULÜP DUYURULARI</h2>
-        <div id="duyuru-list" class="duyuru-grid"></div>
+        <div id="duyuru-list" class="grid"></div>
     </section>
 
     <section id="transfer">
         <h2 class="title">TRANSFER MERKEZİ</h2>
-        <div id="tr-list" class="transfer-grid"></div>
+        <div id="tr-list" class="grid"></div>
     </section>
 
     <section id="ekip">
         <h2 class="title">TEKNİK EKİP & YÖNETİM</h2>
-        <div class="ekip-container">
-            <div id="ekip-kurucu-row" class="kurucu-row"></div>
-            <div id="ekip-yonetici-row" class="yonetici-row"></div>
-            <div id="ekip-uye-row" class="uye-row"></div>
-        </div>
+        <div id="ekip-kurucu-row" class="grid" style="margin-bottom:20px; grid-template-columns:1fr;"></div>
+        <div id="ekip-yonetici-row" class="grid" style="margin-bottom:20px;"></div>
+        <div id="ekip-uye-row" class="grid"></div>
     </section>
 
     <section id="live-support">
         <h2 class="title">7/24 CANLI DESTEK SİSTEMİ</h2>
-        <div class="live-support-box">
-            <div style="font-size: 4rem; margin-bottom: 20px;">🎧</div>
-            <h3 style="font-family:'Orbitron'; color:#f8fafc; margin-bottom:15px; font-size:1.6rem;">İman Power Destek Hattı</h3>
-            <p style="font-size: 1.05rem; line-height: 1.6; color:#cbd5e1; margin-bottom:30px; padding: 0 10px;">
+        <div class="card" style="text-align:center; max-width:500px; margin:0 auto; border-color:#3b82f6;">
+            <div style="font-size:3rem; margin-bottom:15px;">🎧</div>
+            <h3>İman Power Destek Hattı</h3>
+            <p style="font-size:0.9rem; opacity:0.8; margin-bottom:20px; margin-top:10px;">
                 Buraya tıklayarak canlı desteğe gidebilirsiniz. Giriş yaptıktan sonra yeni bir destek odası açabilir, yetkililerle anlık mesajlaşabilir ya eleme odalarına katılabilirsiniz.
             </p>
-            <a href="https://0imanpower0.github.io/ImanPower1/" target="_blank" style="text-decoration: none;">
-                <button class="btn" style="background: #3b82f6; font-size: 1rem; letter-spacing: 1px; padding: 16px;">
-                    🚀 CANLI DESTEK PLATFORMUNA GİT
-                </button>
+            <a href="https://0imanpower0.github.io/ImanPower1/" target="_blank" style="text-decoration:none;">
+                <button class="btn" style="background:#3b82f6; color:white;">🚀 CANLI DESTEK PLATFORMUNA GİT</button>
             </a>
         </div>
     </section>
 
     <section id="eglence-odasi">
         <h2 class="title">İMAN POWER EĞLENCE ODASI</h2>
-        <div class="live-support-box" style="border-color: #10b981; box-shadow: 0 10px 35px rgba(16, 185, 129, 0.2);">
-            <div style="font-size: 4rem; margin-bottom: 20px;">🎮</div>
-            <h3 style="font-family:'Orbitron'; color:#f8fafc; margin-bottom:15px; font-size:1.6rem;">Eğlence ve Oyun Odası</h3>
-            <p style="font-size: 1.05rem; line-height: 1.6; color:#cbd5e1; margin-bottom:30px; padding: 0 10px;">
+        <div class="card" style="text-align:center; max-width:500px; margin:0 auto; border-color:#10b981;">
+            <div style="font-size:3rem; margin-bottom:15px;">🎮</div>
+            <h3>Eğlence ve Oyun Odası</h3>
+            <p style="font-size:0.9rem; opacity:0.8; margin-bottom:20px; margin-top:10px;">
                 Buraya tıklayarak İman Power resmi eğlence platformuna ve oyun odasına giriş yapabilirsiniz. Keyifli vakit geçirmeniz dileğiyle!
             </p>
-            <a href="https://0imanpower0.github.io/ImanPowerGame/" target="_blank" style="text-decoration: none;">
-                <button class="btn" style="background: #10b981; font-size: 1rem; letter-spacing: 1px; padding: 16px;">
-                    🕹️ EĞLENCE ODASINA GİRİŞ YAP
-                </button>
+            <a href="https://0imanpower0.github.io/ImanPowerGame/" target="_blank" style="text-decoration:none;">
+                <button class="btn" style="background:#10b981; color:white;">🕹️ EĞLENCE ODASINA GİRİŞ YAP</button>
             </a>
         </div>
     </section>
@@ -289,33 +211,28 @@
             <button class="btn" onclick="openAdm()">PANELİ AÇ</button>
         </div>
         <div id="adm-box" style="display:none;">
-            <div class="admin-box-layout">
-                
-                <div class="card" style="border: 2px solid #3b82f6;">
+            <div class="grid">
+                <div class="card" style="border-color:#3b82f6;">
                     <h3>👤 KULLANICI AKTİFLİK</h3>
                     <div class="user-list-scroller" id="adm-all-users-list"></div>
-                    
-                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; margin-bottom: 12px;">
-                        <p style="font-size:0.75rem; color:var(--accent); font-weight: bold; margin-bottom: 5px;">Yeni Güvenilir Kullanıcı Ekle:</p>
-                        <input type="text" id="new-secure-user" placeholder="Kullanıcı Adı" style="height:35px; font-size:0.8rem; margin-bottom:5px;">
-                        <input type="text" id="new-secure-pass" placeholder="Şifre" style="height:35px; font-size:0.8rem; margin-bottom:5px;">
-                        <button class="btn" style="height:32px; font-size:0.75rem; background:#3b82f6;" onclick="addSecureUserFromAdmin()">SİSTEME KAYDET</button>
+                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px;">
+                        <p style="font-size:0.75rem; color:var(--accent); font-weight:bold; margin-bottom:5px;">Yeni Güvenilir Kullanıcı Ekle:</p>
+                        <input type="text" id="new-secure-user" placeholder="Kullanıcı Adı" style="padding:6px; margin-bottom:5px;">
+                        <input type="text" id="new-secure-pass" placeholder="Şifre" style="padding:6px; margin-bottom:5px;">
+                        <button class="btn" style="padding:6px; background:#3b82f6; color:white;" onclick="addSecureUserFromAdmin()">SİSTEME KAYDET</button>
                     </div>
                 </div>
-
-                <div class="card" style="border: 2px solid #a78bfa;">
+                <div class="card" style="border-color:#a78bfa;">
                     <h3>📋 SİSTEM ERİŞİM LOGLARI</h3>
                     <div class="user-log-scroller" id="adm-system-logs-box"></div>
-                    <button class="btn" style="background:#ef4444; height:28px; font-size:0.7rem; margin-top:8px;" onclick="clearAllSystemLogs()">LOGLARI TEMİZLE</button>
+                    <button class="btn" style="background:#ef4444; color:white; padding:5px; font-size:0.75rem; margin-top:5px;" onclick="clearAllSystemLogs()">LOGLARI TEMİZLE</button>
                 </div>
-
-                <div class="card" style="border: 2px solid #ef4444;">
+                <div class="card" style="border-color:#ef4444;">
                     <h3>🎵 CANLI PLAYLIST SİSTEMİ</h3>
-                    <textarea id="adm-playlist-urls" placeholder="Örn:&#10;EY07kVGs_Jk" style="height:90px;"></textarea>
-                    <button class="btn" style="background:#10b981; margin-bottom:10px;" onclick="updateLivePlaylist()">MÜZİĞİ BAŞLAT</button>
-                    <button class="btn" style="background:#ef4444; margin-bottom:15px;" onclick="stopLiveMusic()">MÜZİĞİ KAPAT</button>
+                    <textarea id="adm-playlist-urls" placeholder="Örn: EY07kVGs_Jk" style="height:50px;"></textarea>
+                    <button class="btn" style="background:#10b981; color:white; margin-bottom:5px;" onclick="updateLivePlaylist()">MÜZİĞİ BAŞLAT</button>
+                    <button class="btn" style="background:#ef4444; color:white;" onclick="stopLiveMusic()">MÜZİĞİ KAPAT</button>
                 </div>
-
                 <div class="card">
                     <h3>KADRO YÖNETİMİ</h3>
                     <input type="text" id="p-name-input" placeholder="Ad Soyad">
@@ -343,7 +260,7 @@
                     <textarea id="a-d" placeholder="İçerik Detayları..."></textarea>
                     <button class="btn" onclick="saveData()">KAYDET</button>
                 </div>
-                <div class="card" style="max-height: 400px; overflow-y: auto;"><h3>SİSTEM KAYITLARI</h3><div id="adm-manage"></div></div>
+                <div class="card" style="max-height:300px; overflow-y:auto;"><h3>SİSTEM KAYITLARI</h3><div id="adm-manage"></div></div>
             </div>
         </div>
     </section>
@@ -448,6 +365,8 @@
             document.querySelectorAll('.n-l').forEach(l => l.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.getElementById('mention-suggestions').style.display = 'none';
+            const link = Array.from(document.querySelectorAll('.n-l')).find(el => el.getAttribute('onclick').includes(`'${id}'`));
+            if(link) link.classList.add('active');
         };
 
         window.openAdm = () => { if(document.getElementById('adm-k').value === "imanpoweradmini2026") { document.getElementById('adm-lock').style.display='none'; document.getElementById('adm-box').style.display='block'; } else alert("Yanlış!"); };
@@ -549,10 +468,13 @@
             return text.replace(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g, '<span class="mention-tag">@$1</span>');
         }
 
-        const pLoc = { GK: {t:'88%',l:'50%'}, LB: {t:'68%',l:'15%'}, CB1: {t:'68%',l:'38%'}, CB2: {t:'68%',l:'62%'}, RB: {t:'68%',l:'85%'}, LM: {t:'43%',l:'15%'}, CM1: {t:'43%',l:'38%'}, CM2: {t:'43%',l:'62%'}, RM: {t:'43%',l:'85%'}, ST1: {t:'16%',l:'35%'}, ST2: {t:'16%',l:'65%'} };
+        const pLoc = { GK: {t:'85%',l:'50%'}, LB: {t:'70%',l:'15%'}, CB1: {t:'70%',l:'38%'}, CB2: {t:'70%',l:'62%'}, RB: {t:'70%',l:'85%'}, LM: {t:'45%',l:'15%'}, CM1: {t:'45%',l:'38%'}, CM2: {t:'45%',l:'62%'}, RM: {t:'45%',l:'85%'}, ST1: {t:'20%',l:'35%'}, ST2: {t:'20%',l:'65%'} };
 
+        // İlk Yüklenme Durum Kontrolleri (Bildirim Bombardımanını Engellemek İçin)
         let firstLoadChat = true;
         let firstLoadHaber = true;
+        let firstLoadDuyuru = true;
+        let firstLoadEkip = true;
 
         onValue(ref(db, '/'), (snap) => {
             const data = snap.val() || {};
@@ -575,12 +497,12 @@
                 logBox.innerHTML = "";
                 if(data.user_logs) {
                     Object.values(data.user_logs).reverse().forEach(l => {
-                        logBox.innerHTML += `<div style="padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.02);">⏱️ ${l.timestamp || ''} - <b>@${l.username}</b>: ${l.action}</div>`;
+                        logBox.innerHTML += `<div style="padding:2px 0; border-bottom:1px solid rgba(255,255,255,0.02);">⏱️ ${l.timestamp || ''} - <b>@${l.username}</b>: ${l.action}</div>`;
                     });
                 }
             }
 
-            // Gelişmiş Sohbet Dinleme ve Kimin Kimi Etiketlediğini Gösterme Alanı
+            // --- CANLI SOHBET & GELİŞMİŞ ETİKETLEME ---
             const cBox = document.getElementById('chat-msgs'); cBox.innerHTML = "";
             if(data.chat) {
                 let sonMesaj = "";
@@ -602,7 +524,7 @@
                             ${targetInfoHTML}
                             <div style="display:block;">
                                 <div class="msg-user" onclick="appendMentionFromClick('${m.u}')">@${m.u || 'Anonim'}</div>
-                                <span style="font-size:0.75rem; color:var(--text-muted); margin-left:8px;">mesaj attı:</span>
+                                <span style="font-size:0.75rem; color:#94a3b8; margin-left:5px;">mesaj attı:</span>
                             </div>
                             <div style="margin-top:4px;">${formattedText}</div>
                         </div>
@@ -617,106 +539,86 @@
                     if (targetUsers.includes(user.toLowerCase())) {
                         triggerLocalNotification(`🚨 @${sonYazan} Seni Etiketledi!`, `${sonYazan}: ${sonMesaj}`);
                     } else {
-                        triggerLocalNotification(`💬 @${sonYazan} Mesaj Gönderdi`, `${sonYazan}: ${sonMesaj}`);
+                        triggerLocalNotification(`💬 Yeni Mesaj (@${sonYazan})`, `${sonYazan}: ${sonMesaj}`);
                     }
                 }
             }
             cBox.scrollTop = cBox.scrollHeight;
             firstLoadChat = false;
 
-            // Son Dakika Yapılı Haber Kartları
-            const hbEl = document.getElementById('haber-list'); hbEl.innerHTML = "";
+            // --- HABERLER (BİLDİRİMLİ) ---
+            const rH = document.getElementById('haber-list'); rH.innerHTML = "";
             if(data.haber) {
                 let sonHaberBaslik = "";
-                Object.entries(data.haber).reverse().forEach(([id, val]) => {
-                    hbEl.innerHTML += `
-                        <div class="haber-card">
-                            <div class="haber-body">
-                                <div class="card-date">📅 ${val.date || new Date().toLocaleDateString('tr-TR')}</div>
-                                <div class="haber-badge-flash">🔥 SON DAKİKA HABERİ</div>
-                                <h3>${val.name}</h3>
-                                <p>${val.desc}</p>
-                            </div>
-                        </div>`;
-                    if(!sonHaberBaslik) sonHaberBaslik = val.name;
+                Object.values(data.haber).reverse().forEach(v => {
+                    rH.innerHTML += `<div class="card"><h3>🔥 SON DAKİKA: ${v.name}</h3><p style="margin-top:8px; opacity:0.8;">${v.desc}</p><span style="font-size:0.7rem; color:var(--accent); display:block; margin-top:10px;">📅 ${v.date || ''}</span></div>`;
+                    if(!sonHaberBaslik) sonHaberBaslik = v.name;
                 });
-                if(!firstLoadHaber) triggerLocalNotification(`📢 Son Dakika Haberi!`, sonHaberBaslik);
+                if(!firstLoadHaber) {
+                    triggerLocalNotification("🔥 KULÜPTEN SON DAKİKA HABERİ!", sonHaberBaslik);
+                }
             }
             firstLoadHaber = false;
 
-            // Son Dakika Yapılı Duyuru Kartları
-            const dyEl = document.getElementById('duyuru-list'); dyEl.innerHTML = "";
+            // --- DUYURULAR (BİLDİRİMLİ) ---
+            const rD = document.getElementById('duyuru-list'); rD.innerHTML = "";
             if(data.duyuru) {
-                Object.entries(data.duyuru).reverse().forEach(([id, val]) => {
-                    dyEl.innerHTML += `
-                        <div class="duyuru-card-style">
-                            <div class="card-date" style="color:#f59e0b;">⏱️ ${val.date || ''}</div>
-                            <div class="duyuru-badge-flash">📢 SON DAKİKA DUYURUSU</div>
-                            <h3>${val.name}</h3>
-                            <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.5;">${val.desc}</p>
-                        </div>`;
+                let sonDuyuruBaslik = "";
+                Object.values(data.duyuru).reverse().forEach(v => {
+                    rD.innerHTML += `<div class="card" style="border-left:4px solid #fbbf24;"><h3>📢 DUYURU: ${v.name}</h3><p style="margin-top:8px; opacity:0.8;">${v.desc}</p><span style="font-size:0.7rem; opacity:0.5; display:block; margin-top:10px;">⏱️ ${v.date || ''}</span></div>`;
+                    if(!sonDuyuruBaslik) sonDuyuruBaslik = v.name;
                 });
+                if(!firstLoadDuyuru) {
+                    triggerLocalNotification("📢 YENİ KULÜP DUYURUSU!", sonDuyuruBaslik);
+                }
             }
+            firstLoadDuyuru = false;
 
-            const trEl = document.getElementById('tr-list'); trEl.innerHTML = "";
-            if(data.transfer) {
-                Object.entries(data.transfer).reverse().forEach(([id, val]) => {
-                    let badgeClass = "tr-ilgileniyor";
-                    if(val.status === 'Görüşme Aşamasında') badgeClass = "tr-gorusme";
-                    if(val.status === 'Alındı') badgeClass = "tr-alindi";
-                    
-                    trEl.innerHTML += `
-                        <div class="transfer-card-style">
-                            <span class="transfer-badge ${badgeClass}">${val.status || 'İlgileniliyor'}</span>
-                            <div class="card-date">✈️ TRANSFER HABERİ</div>
-                            <h3 style="margin-top:10px;">${val.name}</h3>
-                            <p style="color:#cbd5e1; margin-top:10px; font-size:0.95rem;">${val.desc}</p>
-                        </div>`;
-                });
-            }
+            // --- TRANSFERLER ---
+            const rT = document.getElementById('tr-list'); rT.innerHTML = "";
+            if(data.transfer) Object.values(data.transfer).reverse().forEach(v => {
+                rT.innerHTML += `<div class="card"><span class="badge" style="background:rgba(16,185,129,0.2); color:var(--accent); border:1px solid var(--border);">${v.status || 'İlgileniliyor'}</span><h3>✈️ ${v.name}</h3><p style="margin-top:8px; opacity:0.8;">${v.desc}</p></div>`;
+            });
 
-            const krRow = document.getElementById('ekip-kurucu-row'); krRow.innerHTML = "";
-            const yoRow = document.getElementById('ekip-yonetici-row'); yoRow.innerHTML = "";
-            const uyRow = document.getElementById('ekip-uye-row'); uyRow.innerHTML = "";
+            // --- EKİP (BİLDİRİMLİ) ---
+            const rK = document.getElementById('ekip-kurucu-row'); rK.innerHTML = "";
+            const rY = document.getElementById('ekip-yonetici-row'); rY.innerHTML = "";
+            const rU = document.getElementById('ekip-uye-row'); rU.innerHTML = "";
             if(data.ekip) {
-                Object.entries(data.ekip).forEach(([id, val]) => {
-                    let cardHTML = "";
-                    if(val.role === 'Kurucu' || val.role === 'Başkan') {
-                        cardHTML = `<div class="ekip-card kurucu-style"><h3>${val.name}</h3><p style="color:#fbbf24; font-weight:800; font-size:0.9rem; margin-top:5px; letter-spacing:2px;">${val.role.toUpperCase()}</p><p style="margin-top:10px; opacity:0.9; font-size:0.95rem;">${val.desc}</p></div>`;
-                        krRow.innerHTML += cardHTML;
-                    } else if(val.role === 'Yönetici') {
-                        cardHTML = `<div class="ekip-card yonetici-style"><h3>${val.name}</h3><p style="color:#38bdf8; font-weight:800; font-size:0.85rem; margin-top:5px;">${val.role.toUpperCase()}</p><p style="margin-top:10px; opacity:0.9; font-size:0.9rem;">${val.desc}</p></div>`;
-                        yoRow.innerHTML += cardHTML;
-                    } else {
-                        cardHTML = `<div class="ekip-card personel-style"><h3>${val.name}</h3><p style="color:#a78bfa; font-weight:700; font-size:0.8rem; margin-top:5px;">${val.role.toUpperCase()}</p><p style="margin-top:8px; opacity:0.85; font-size:0.85rem;">${val.desc}</p></div>`;
-                        uyRow.innerHTML += cardHTML;
-                    }
+                let sonEkipIsim = "";
+                let sonEkipRol = "";
+                Object.values(data.ekip).forEach(v => {
+                    const role = v.role || 'Üye';
+                    if(role === 'Kurucu') rK.innerHTML += `<div class="card kurucu-style"><span class="badge" style="background:#fbbf24; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+                    else if(role === 'Başkan' || role === 'Yönetici') rY.innerHTML += `<div class="card yonetici-style"><span class="badge" style="background:#38bdf8; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+                    else rU.innerHTML += `<div class="card personel-style"><span class="badge" style="background:#a78bfa">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+                    sonEkipIsim = v.name;
+                    sonEkipRol = role;
                 });
+                if(!firstLoadEkip) {
+                    triggerLocalNotification("👤 YENİ YETKİLİ / EKİP ÜYESİ GÖREVLENDİRİLDİ!", `${sonEkipIsim} (${sonEkipRol}) olarak eklendi.`);
+                }
             }
+            firstLoadEkip = false;
 
+            // --- KADRO ---
             const saha = document.getElementById('saha'); saha.innerHTML = "";
             if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
 
+            // --- ADMİN PANELİ AKTİFLİK VE AYARLAR ---
             const userBox = document.getElementById('adm-all-users-list');
             if(userBox && data.users) {
                 userBox.innerHTML = "";
                 Object.entries(data.users).forEach(([uName, uData]) => {
                     const presence = uData.presence || {};
-                    userBox.innerHTML += `<div class="user-item-row">👤 <b>${uName}</b> [${presence.status === 'online' ? '🟢' : '🔴'}]</div>`;
+                    userBox.innerHTML += `<div class="user-item-row">👤 <b>${uName}</b> [${presence.status === 'online' ? '🟢 En Son Active: ' + (presence.lastActive || '') : '🔴 Çevrimdışı'}]</div>`;
                 });
             }
 
-            const mng = document.getElementById('adm-manage');
-            if(mng) {
-                mng.innerHTML = "";
-                ['duyuru', 'transfer', 'ekip', 'haber'].forEach(type => {
-                    if(data[type]) {
-                        Object.entries(data[type]).forEach(([id, val]) => {
-                            mng.innerHTML += `<div style="display:flex; justify-content:between; align-items:center; padding:5px; font-size:0.8rem; border-bottom:1px solid rgba(255,255,255,0.05);"><span>[${type.toUpperCase()}] ${val.name}</span><button style="background:#ef4444; border:none; color:white; padding:2px 6px; border-radius:4px; cursor:pointer;" onclick="removeData('${type}','${id}')">Sil</button></div>`;
-                        });
-                    }
-                });
-            }
+            const aM = document.getElementById('adm-manage'); aM.innerHTML = "";
+            ['duyuru', 'transfer', 'ekip', 'kadro', 'haber'].forEach(t => { 
+                if(data[t]) Object.entries(data[t]).forEach(([k, v]) => aM.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.8rem;"><span>[${t.toUpperCase()}] ${v.name}</span><button style="background:#ef4444; border:none; color:white; padding:2px 6px; border-radius:4px; cursor:pointer;" onclick="removeData('${t}','${k}')">Sil</button></div>`); 
+            });
         });
 
         window.removeData = (type, id) => { if(confirm("Silinsin mi?")) remove(ref(db, type + '/' + id)); };
