@@ -10,8 +10,7 @@
     {
       "src": "https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
