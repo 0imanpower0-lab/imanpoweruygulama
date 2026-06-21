@@ -65,9 +65,9 @@
             #home-content img { width: 140px; height: 140px; }
         }
 
-        /* Tasarımsal Olarak Geliştirilmiş Yeni Kart Yapıları */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         
+        /* Geliştirilmiş Yeni Şık Kart Yapıları */
         .haber-list-container { display: flex; flex-direction: column; gap: 30px; }
         .haber-card { background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
         @media (min-width: 768px) { .haber-card { flex-direction: row; min-height: 240px; } }
@@ -109,7 +109,7 @@
         .personel-style::before { background: #a78bfa; }
         .personel-style h3 { font-size: 1.2rem; font-family: 'Orbitron'; color: #a78bfa; }
 
-        /* Saha Yapısı */
+        /* Orijinal Korunan Saha Yapısı */
         .pitch-container { width: 100%; display: flex; justify-content: center; overflow: hidden; padding: 10px 0; }
         .pitch { width: 100%; max-width: 520px; height: 740px; background: #064e3b; margin: 0 auto; border: 4px solid #fff; border-radius: 15px; position: relative; background-image: repeating-linear-gradient(0deg, #064e3b, #064e3b 65px, #065f46 65px, #065f46 130px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         @media (max-width: 540px) { .pitch { transform: scale(0.75); margin-bottom: -180px; transform-origin: top center; } }
@@ -119,7 +119,7 @@
         .shirt { width: 52px; height: 52px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-shadow: 1px 1px 2px #000; }
         .p-name { background: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 10px; margin-top: 5px; border: 1px solid var(--accent); font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        /* Sohbet ve Gelişmiş Etiketleme Yapısı */
+        /* Chat ve Canlı Etiketleme (Mention) Yapısı */
         .chat-area { height: 550px; background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--card-shadow); backdrop-filter: blur(10px); position: relative; }
         @media (max-width: 768px) { .chat-area { height: 450px; } }
         #chat-msgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -130,12 +130,10 @@
         .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; margin-bottom: 3px; cursor: pointer; display: inline-block; }
         .msg-user:hover { text-decoration: underline; }
         
-        /* Öne Çıkan Etiket (Mention) Tasarımı */
         .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 6px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.4); display: inline-block; margin: 0 2px; }
         .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.06) !important; animation: pulseMention 2s infinite alternate; }
         @keyframes pulseMention { from { box-shadow: inset 4px 0 0 #f59e0b; } to { box-shadow: inset 4px 0 15px rgba(245, 158, 11, 0.2); } }
 
-        /* Canlı Etiketleme Menüsü (Açılır Kutu) */
         #mention-suggestions { position: absolute; bottom: 80px; left: 15px; right: 15px; background: #0f172a; border: 1px solid var(--accent); border-radius: 12px; max-height: 150px; overflow-y: auto; display: none; z-index: 100; box-shadow: 0 -5px 25px rgba(0,0,0,0.5); }
         .suggestion-item { padding: 10px 15px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .suggestion-item:hover { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
@@ -147,6 +145,9 @@
         .btn { padding: 14px; border: none; border-radius: 12px; color: white; font-weight: 800; cursor: pointer; background: var(--accent); width: 100%; transition: 0.3s; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.5px; }
         .btn:hover { filter: brightness(1.15); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-1px); }
         
+        .card { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
+        .card h3 { font-family: 'Orbitron'; font-size: 1.2rem; margin-bottom: 15px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+
         .live-support-box { background: var(--glass); max-width: 650px; margin: 0 auto; padding: 40px; border-radius: 24px; border: 2px solid #3b82f6; text-align: center; box-shadow: 0 10px 35px rgba(59, 130, 246, 0.15); backdrop-filter: blur(10px); }
         @media (max-width: 768px) { .live-support-box { padding: 25px 20px; } }
 
@@ -220,7 +221,7 @@
             <div id="chat-msgs"></div>
             <div id="mention-suggestions"></div>
             <div style="display:flex; padding:15px; gap:10px; background:rgba(0,0,0,0.4);">
-                <input type="text" id="m-in" placeholder="Mesaj gönder... (Etiketlemek için @ yazın)" style="margin:0;" oninput="handleChatInput(this)" onkeydown="handleChatKeyDown(event)">
+                <input type="text" id="m-in" placeholder="Mesaj gönder... (Etiketlemek için @ yazın)" style="margin:0;" oninput="handleChatInput(this)">
                 <button class="btn" style="width:120px;" onclick="send()">GÖNDER</button>
             </div>
         </div>
@@ -365,13 +366,52 @@
 
         let user = "";
         let allRegisteredUsers = [];
-        let selectedSuggestionIndex = -1;
+        let ytPlayer = null;
+        let currentTrackId = "";
 
-        // Bildirim Sistemi
+        // Orijinal Korunan Şarkı Çalma Altyapısı (Birebir Geri Geldi)
+        window.onYouTubeIframeAPIReady = () => {
+            // API yüklendiğinde hazır bekler
+        };
+
+        function playYouTubeTrack(trackId) {
+            if(!trackId) return;
+            currentTrackId = trackId;
+            const container = document.getElementById('music-player-container');
+            container.innerHTML = `<div id="yt-hidden-player"></div>`;
+            
+            ytPlayer = new YT.Player('yt-hidden-player', {
+                height: '0',
+                width: '0',
+                videoId: trackId,
+                playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'playlist': trackId },
+                events: {
+                    'onReady': (e) => { e.target.playVideo(); },
+                    'onStateChange': (e) => {
+                        if(e.data === YT.PlayerState.ENDED) { e.target.playVideo(); }
+                    }
+                }
+            });
+        }
+
+        window.updateLivePlaylist = () => {
+            const val = document.getElementById('adm-playlist-urls').value.trim();
+            if(!val) return alert("Şarkı ID boş olamaz!");
+            set(ref(db, 'live_playlist'), { currentTrack: val }).then(() => alert("Şarkı tüm sistemde başlatıldı!"));
+        };
+
+        window.stopLiveMusic = () => {
+            set(ref(db, 'live_playlist'), { currentTrack: "" }).then(() => alert("Şarkı tüm sistemde susturuldu!"));
+        };
+
+        // Orijinal Korunan Giriş/Erişim Log Mantığı (Birebir Geri Geldi)
+        window.clearAllSystemLogs = () => {
+            remove(ref(db, 'user_logs')).then(() => alert("Tüm loglar temizlendi!"));
+        };
+
+        // Bildirimler
         function setupNotifications() {
-            if ("Notification" in window) {
-                Notification.requestPermission();
-            }
+            if ("Notification" in window) { Notification.requestPermission(); }
         }
 
         function triggerLocalNotification(title, body) {
@@ -401,6 +441,7 @@
                         lastActive: new Date().toLocaleString('tr-TR')
                     });
 
+                    // Orijinal Log Atma Yapısı Geri Geldi
                     push(ref(db, 'user_logs'), {
                         username: username,
                         action: `Giriş Başarılı (Mobil/Web)`,
@@ -433,7 +474,7 @@
             const num = document.getElementById('p-num-input').value.trim();
             const pos = document.getElementById('p-pos-input').value;
             if(!name || !num) return alert("Eksik!");
-            set(ref(db, 'kadro/' + pos), { name, num, pos });
+            set(ref(db, 'kadro/' + pos), { name, num, pos }).then(() => alert("Oyuncu yerleştirildi!"));
         };
 
         window.saveData = () => {
@@ -447,7 +488,13 @@
             push(ref(db, type), payload).then(() => alert("Canlı Olarak Gönderildi!"));
         };
 
-        // Gelişmiş Üye Etiketleme Sistemi (Mention) Kodları
+        window.checkType = (val) => {
+            document.getElementById('haber-ekstra-box').style.display = val === 'haber' ? 'block' : 'none';
+            document.getElementById('ekip-rol-box').style.display = val === 'ekip' ? 'block' : 'none';
+            document.getElementById('transfer-durum-box').style.display = val === 'transfer' ? 'block' : 'none';
+        };
+
+        // Gelişmiş Üye Etiketleme Sistemi (Mention)
         window.handleChatInput = (inputEl) => {
             const val = inputEl.value;
             const cursorPosition = inputEl.selectionStart;
@@ -458,20 +505,20 @@
             if (lastWord.startsWith('@')) {
                 const searchName = lastWord.substring(1).toLowerCase();
                 const filtered = allRegisteredUsers.filter(u => u.toLowerCase().includes(searchName));
-                showMentionSuggestions(filtered, lastWord);
+                showMentionSuggestions(filtered);
             } else {
                 document.getElementById('mention-suggestions').style.display = 'none';
             }
         };
 
-        function showMentionSuggestions(usersList, currentWord) {
+        function showMentionSuggestions(usersList) {
             const box = document.getElementById('mention-suggestions');
             if (usersList.length === 0) {
                 box.style.display = 'none';
                 return;
             }
             box.innerHTML = "";
-            usersList.forEach((uName, idx) => {
+            usersList.forEach((uName) => {
                 const div = document.createElement('div');
                 div.className = "suggestion-item";
                 div.innerHTML = `⚽ <span>@${uName}</span>`;
@@ -489,7 +536,7 @@
             const textAfterCursor = val.substring(cursorPosition);
             
             const words = textBeforeCursor.split(/\s/);
-            words[words.length - 1] = `@${uName} `; // Boşluk bırakarak tamamlar
+            words[words.length - 1] = `@${uName} `;
             
             inputEl.value = words.join(' ') + textAfterCursor;
             document.getElementById('mention-suggestions').style.display = 'none';
@@ -512,7 +559,6 @@
             }
         };
 
-        // Mesaj metnindeki @etiketleri şık sarı badge'e dönüştürür
         function formatMessageText(text) {
             return text.replace(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g, '<span class="mention-tag">@$1</span>');
         }
@@ -525,12 +571,33 @@
         onValue(ref(db, '/'), (snap) => {
             const data = snap.val() || {};
             
-            // Tüm kayıtlı üyeleri dinamik güncelle (etiketleme listesi için)
-            if(data.users) {
-                allRegisteredUsers = Object.keys(data.users);
+            if(data.users) { allRegisteredUsers = Object.keys(data.users); }
+
+            // Canlı Şarkı Playlistini Dinleme Yapısı (Orijinal Sistem)
+            if(data.live_playlist && data.live_playlist.currentTrack) {
+                if(currentTrackId !== data.live_playlist.currentTrack) {
+                    playYouTubeTrack(data.live_playlist.currentTrack);
+                }
+            } else {
+                if(ytPlayer) {
+                    try { ytPlayer.stopVideo(); } catch(e){}
+                    document.getElementById('music-player-container').innerHTML = "";
+                    currentTrackId = "";
+                }
             }
 
-            // Sohbet Dinleme ve Bildirim Gönderme
+            // Orijinal Sistem Erişim Loglarını Ekrana Dökme Yapısı
+            const logBox = document.getElementById('adm-system-logs-box');
+            if(logBox) {
+                logBox.innerHTML = "";
+                if(data.user_logs) {
+                    Object.values(data.user_logs).reverse().forEach(l => {
+                        logBox.innerHTML += `<div style="padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.02);">⏱️ ${l.timestamp || ''} - <b>@${l.username}</b>: ${l.action}</div>`;
+                    });
+                }
+            }
+
+            // Sohbet Dinleme
             const cBox = document.getElementById('chat-msgs'); cBox.innerHTML = "";
             if(data.chat) {
                 let sonMesaj = "";
@@ -561,7 +628,7 @@
             cBox.scrollTop = cBox.scrollHeight;
             firstLoadChat = false;
 
-            // Haberleri Yakışıklı Kartlara Dökme
+            // Haber Kartları
             const hbEl = document.getElementById('haber-list'); hbEl.innerHTML = "";
             if(data.haber) {
                 let sonHaberBaslik = "";
@@ -580,7 +647,7 @@
             }
             firstLoadHaber = false;
 
-            // Duyuruları Gelişmiş Kart Yapısına Çevirme
+            // Duyuru Kartları
             const dyEl = document.getElementById('duyuru-list'); dyEl.innerHTML = "";
             if(data.duyuru) {
                 Object.entries(data.duyuru).reverse().forEach(([id, val]) => {
@@ -593,7 +660,7 @@
                 });
             }
 
-            // Transfer Merkezini Gelişmiş Kart Yapısına Çevirme
+            // Transfer Kartları
             const trEl = document.getElementById('tr-list'); trEl.innerHTML = "";
             if(data.transfer) {
                 Object.entries(data.transfer).reverse().forEach(([id, val]) => {
@@ -611,7 +678,7 @@
                 });
             }
 
-            // Teknik Ekip & Yönetimi Gelişmiş Kart Yapısına Çevirme
+            // Teknik Ekip Kartları
             const krRow = document.getElementById('ekip-kurucu-row'); krRow.innerHTML = "";
             const yoRow = document.getElementById('ekip-yonetici-row'); yoRow.innerHTML = "";
             const uyRow = document.getElementById('ekip-uye-row'); uyRow.innerHTML = "";
@@ -636,7 +703,7 @@
             const saha = document.getElementById('saha'); saha.innerHTML = "";
             if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
 
-            // Admin Listesi
+            // Admin Kullanıcı Yönetimi Listesi
             const userBox = document.getElementById('adm-all-users-list');
             if(userBox && data.users) {
                 userBox.innerHTML = "";
@@ -645,7 +712,22 @@
                     userBox.innerHTML += `<div class="user-item-row">👤 <b>${uName}</b> [${presence.status === 'online' ? '🟢' : '🔴'}]</div>`;
                 });
             }
+
+            // Admin Sistem İçerik Kaldırma Listesi
+            const mng = document.getElementById('adm-manage');
+            if(mng) {
+                mng.innerHTML = "";
+                ['duyuru', 'transfer', 'ekip', 'haber'].forEach(type => {
+                    if(data[type]) {
+                        Object.entries(data[type]).forEach(([id, val]) => {
+                            mng.innerHTML += `<div style="display:flex; justify-content:between; align-items:center; padding:5px; font-size:0.8rem; border-bottom:1px solid rgba(255,255,255,0.05);"><span>[${type.toUpperCase()}] ${val.name}</span><button style="background:#ef4444; border:none; color:white; padding:2px 6px; border-radius:4px; cursor:pointer;" onclick="removeData('${type}','${id}')">Sil</button></div>`;
+                        });
+                    }
+                });
+            }
         });
+
+        window.removeData = (type, id) => { if(confirm("Silinsin mi?")) remove(ref(db, type + '/' + id)); };
     </script>
 </body>
 </html>
