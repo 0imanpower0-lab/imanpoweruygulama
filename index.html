@@ -67,24 +67,28 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         
-        /* Geliştirilmiş Yeni Şık Kart Yapıları */
+        /* Son Dakika Temalı Haber Kartları */
         .haber-list-container { display: flex; flex-direction: column; gap: 30px; }
         .haber-card { background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
         @media (min-width: 768px) { .haber-card { flex-direction: row; min-height: 240px; } }
-        .haber-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2); }
+        .haber-card:hover { border-color: #ef4444; transform: translateY(-5px); box-shadow: 0 12px 40px rgba(239, 68, 68, 0.2); }
         .haber-body { padding: 30px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; }
-        .haber-body h3 { font-family: 'Orbitron'; font-size: 1.6rem; margin-bottom: 12px; color: var(--accent); line-height: 1.3; }
+        .haber-badge-flash { display: inline-block; background: #ef4444; color: #fff; font-family: 'Orbitron'; font-weight: 900; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; width: fit-content; margin-bottom: 10px; letter-spacing: 1px; animation: flashGlow 1.5s infinite alternate; }
+        @keyframes flashGlow { from { opacity: 0.7; box-shadow: 0 0 5px rgba(239, 68, 68, 0.5); } to { opacity: 1; box-shadow: 0 0 15px rgba(239, 68, 68, 0.9); } }
+        .haber-body h3 { font-family: 'Orbitron'; font-size: 1.6rem; margin-bottom: 12px; color: #fff; line-height: 1.3; font-weight: 800; }
         .haber-body p { font-size: 1rem; opacity: 0.9; line-height: 1.6; color: #e2e8f0; margin-bottom: 15px; white-space: pre-line; }
         .card-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
 
+        /* Son Dakika Temalı Duyuru Kartları */
         .duyuru-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .duyuru-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 5px solid #ef4444; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); }
-        .duyuru-card-style:hover { transform: translateY(-4px); border-color: #ef4444; box-shadow: 0 8px 30px rgba(239, 68, 68, 0.15); }
-        .duyuru-card-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #f8fafc; margin-bottom: 10px; }
+        .duyuru-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid #f59e0b; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); }
+        .duyuru-card-style:hover { transform: translateY(-4px); border-color: #f59e0b; box-shadow: 0 8px 30px rgba(245, 158, 11, 0.25); }
+        .duyuru-badge-flash { display: inline-block; background: #f59e0b; color: #000; font-family: 'Orbitron'; font-weight: 900; font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; letter-spacing: 1px; }
+        .duyuru-card-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #f8fafc; margin-bottom: 10px; font-weight: 800; }
 
         .transfer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .transfer-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 5px solid #f59e0b; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
-        .transfer-card-style:hover { transform: translateY(-4px); border-color: #f59e0b; box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15); }
+        .transfer-card-style { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid var(--border); border-left: 5px solid #3b82f6; box-shadow: var(--card-shadow); transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
+        .transfer-card-style:hover { transform: translateY(-4px); border-color: #3b82f6; box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15); }
         .transfer-badge { position: absolute; top: 20px; right: 20px; padding: 4px 12px; border-radius: 30px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
         .tr-ilgileniyor { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid #3b82f6; }
         .tr-gorusme { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
@@ -109,7 +113,6 @@
         .personel-style::before { background: #a78bfa; }
         .personel-style h3 { font-size: 1.2rem; font-family: 'Orbitron'; color: #a78bfa; }
 
-        /* Orijinal Korunan Saha Yapısı */
         .pitch-container { width: 100%; display: flex; justify-content: center; overflow: hidden; padding: 10px 0; }
         .pitch { width: 100%; max-width: 520px; height: 740px; background: #064e3b; margin: 0 auto; border: 4px solid #fff; border-radius: 15px; position: relative; background-image: repeating-linear-gradient(0deg, #064e3b, #064e3b 65px, #065f46 65px, #065f46 130px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         @media (max-width: 540px) { .pitch { transform: scale(0.75); margin-bottom: -180px; transform-origin: top center; } }
@@ -119,7 +122,7 @@
         .shirt { width: 52px; height: 52px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-shadow: 1px 1px 2px #000; }
         .p-name { background: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 10px; margin-top: 5px; border: 1px solid var(--accent); font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        /* Chat ve Canlı Etiketleme (Mention) Yapısı */
+        /* Kimin Kimi Etiketlediği Belli Olan Chat Düzeni */
         .chat-area { height: 550px; background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--card-shadow); backdrop-filter: blur(10px); position: relative; }
         @media (max-width: 768px) { .chat-area { height: 450px; } }
         #chat-msgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -130,6 +133,7 @@
         .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; margin-bottom: 3px; cursor: pointer; display: inline-block; }
         .msg-user:hover { text-decoration: underline; }
         
+        .mention-info-bar { font-size: 0.7rem; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 2px 8px; border-radius: 6px; font-weight: 700; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(245, 158, 11, 0.2); }
         .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 2px 6px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.4); display: inline-block; margin: 0 2px; }
         .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.06) !important; animation: pulseMention 2s infinite alternate; }
         @keyframes pulseMention { from { box-shadow: inset 4px 0 0 #f59e0b; } to { box-shadow: inset 4px 0 15px rgba(245, 158, 11, 0.2); } }
@@ -326,9 +330,9 @@
                 <div class="card">
                     <h3>İÇERİK EKLE</h3>
                     <select id="a-t" onchange="checkType(this.value)">
-                        <option value="duyuru">Duyuru</option><option value="transfer">Transfer</option><option value="ekip">Ekip</option><option value="haber">Haber</option>
+                        <option value="duyuru">Duyuru / Konu</option><option value="transfer">Transfer</option><option value="ekip">Ekip</option><option value="haber">Haber Başlığı</option>
                     </select>
-                    <input type="text" id="a-n" placeholder="Başlık / İsim">
+                    <input type="text" id="a-n" placeholder="Başlık / İsim / Konu">
                     <div id="haber-ekstra-box" style="display:none;"><input type="text" id="a-h-topic" placeholder="Haber Konusu"><input type="text" id="a-h-img" placeholder="Resim URL"></div>
                     <div id="ekip-rol-box" style="display:none;"><select id="a-role"><option value="Kurucu">Kurucu</option><option value="Başkan">Başkan</option><option value="Yönetici">Yönetici</option><option value="Personel">Personel</option><option value="Üye">Üye</option></select></div>
                     <div id="transfer-durum-box" style="display:none;">
@@ -336,7 +340,7 @@
                             <option value="Yakından İlgileniliyor">Yakından İlgileniliyor</option><option value="Görüşme Aşamasında">Görüşme Aşamasında</option><option value="Alındı">Alındı</option>
                         </select>
                     </div>
-                    <textarea id="a-d" placeholder="Detaylar..."></textarea>
+                    <textarea id="a-d" placeholder="İçerik Detayları..."></textarea>
                     <button class="btn" onclick="saveData()">KAYDET</button>
                 </div>
                 <div class="card" style="max-height: 400px; overflow-y: auto;"><h3>SİSTEM KAYITLARI</h3><div id="adm-manage"></div></div>
@@ -369,10 +373,7 @@
         let ytPlayer = null;
         let currentTrackId = "";
 
-        // Orijinal Korunan Şarkı Çalma Altyapısı (Birebir Geri Geldi)
-        window.onYouTubeIframeAPIReady = () => {
-            // API yüklendiğinde hazır bekler
-        };
+        window.onYouTubeIframeAPIReady = () => {};
 
         function playYouTubeTrack(trackId) {
             if(!trackId) return;
@@ -381,15 +382,11 @@
             container.innerHTML = `<div id="yt-hidden-player"></div>`;
             
             ytPlayer = new YT.Player('yt-hidden-player', {
-                height: '0',
-                width: '0',
-                videoId: trackId,
+                height: '0', width: '0', videoId: trackId,
                 playerVars: { 'autoplay': 1, 'controls': 0, 'loop': 1, 'playlist': trackId },
                 events: {
                     'onReady': (e) => { e.target.playVideo(); },
-                    'onStateChange': (e) => {
-                        if(e.data === YT.PlayerState.ENDED) { e.target.playVideo(); }
-                    }
+                    'onStateChange': (e) => { if(e.data === YT.PlayerState.ENDED) { e.target.playVideo(); } }
                 }
             });
         }
@@ -404,12 +401,10 @@
             set(ref(db, 'live_playlist'), { currentTrack: "" }).then(() => alert("Şarkı tüm sistemde susturuldu!"));
         };
 
-        // Orijinal Korunan Giriş/Erişim Log Mantığı (Birebir Geri Geldi)
         window.clearAllSystemLogs = () => {
             remove(ref(db, 'user_logs')).then(() => alert("Tüm loglar temizlendi!"));
         };
 
-        // Bildirimler
         function setupNotifications() {
             if ("Notification" in window) { Notification.requestPermission(); }
         }
@@ -432,20 +427,15 @@
                     setupNotifications();
                     
                     set(ref(db, 'users/' + username + '/presence'), {
-                        status: "online",
-                        lastActive: new Date().toLocaleString('tr-TR')
+                        status: "online", lastActive: new Date().toLocaleString('tr-TR')
                     });
 
                     onDisconnect(ref(db, 'users/' + username + '/presence')).set({
-                        status: "offline",
-                        lastActive: new Date().toLocaleString('tr-TR')
+                        status: "offline", lastActive: new Date().toLocaleString('tr-TR')
                     });
 
-                    // Orijinal Log Atma Yapısı Geri Geldi
                     push(ref(db, 'user_logs'), {
-                        username: username,
-                        action: `Giriş Başarılı (Mobil/Web)`,
-                        timestamp: new Date().toLocaleString('tr-TR')
+                        username: username, action: `Giriş Başarılı (Mobil/Web)`, timestamp: new Date().toLocaleString('tr-TR')
                     });
                 } else {
                     alert("Hatalı Giriş Bilgisi!");
@@ -494,7 +484,6 @@
             document.getElementById('transfer-durum-box').style.display = val === 'transfer' ? 'block' : 'none';
         };
 
-        // Gelişmiş Üye Etiketleme Sistemi (Mention)
         window.handleChatInput = (inputEl) => {
             const val = inputEl.value;
             const cursorPosition = inputEl.selectionStart;
@@ -513,10 +502,7 @@
 
         function showMentionSuggestions(usersList) {
             const box = document.getElementById('mention-suggestions');
-            if (usersList.length === 0) {
-                box.style.display = 'none';
-                return;
-            }
+            if (usersList.length === 0) { box.style.display = 'none'; return; }
             box.innerHTML = "";
             usersList.forEach((uName) => {
                 const div = document.createElement('div');
@@ -570,10 +556,8 @@
 
         onValue(ref(db, '/'), (snap) => {
             const data = snap.val() || {};
-            
             if(data.users) { allRegisteredUsers = Object.keys(data.users); }
 
-            // Canlı Şarkı Playlistini Dinleme Yapısı (Orijinal Sistem)
             if(data.live_playlist && data.live_playlist.currentTrack) {
                 if(currentTrackId !== data.live_playlist.currentTrack) {
                     playYouTubeTrack(data.live_playlist.currentTrack);
@@ -586,7 +570,6 @@
                 }
             }
 
-            // Orijinal Sistem Erişim Loglarını Ekrana Dökme Yapısı
             const logBox = document.getElementById('adm-system-logs-box');
             if(logBox) {
                 logBox.innerHTML = "";
@@ -597,20 +580,31 @@
                 }
             }
 
-            // Sohbet Dinleme
+            // Gelişmiş Sohbet Dinleme ve Kimin Kimi Etiketlediğini Gösterme Alanı
             const cBox = document.getElementById('chat-msgs'); cBox.innerHTML = "";
             if(data.chat) {
                 let sonMesaj = "";
                 let sonYazan = "";
                 Object.values(data.chat).forEach(m => { 
-                    const isMentioned = m.m.toLowerCase().includes(`@${user}`);
+                    const matches = m.m.match(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g);
+                    let targetUsers = matches ? matches.map(x => x.substring(1).toLowerCase()) : [];
+                    const isMentioned = targetUsers.includes(user.toLowerCase());
                     const msgClass = m.u === user ? 'msg me' : (isMentioned ? 'msg mentioned' : 'msg');
                     const formattedText = formatMessageText(m.m);
                     
+                    let targetInfoHTML = "";
+                    if(targetUsers.length > 0) {
+                        targetInfoHTML = `<div class="mention-info-bar">📣 @${m.u} kullanıcısı, @${targetUsers.join(', @')} kişisini etiketledi!</div>`;
+                    }
+                    
                     cBox.innerHTML += `
                         <div class="${msgClass}">
-                            <div class="msg-user" onclick="appendMentionFromClick('${m.u}')">@${m.u || 'Anonim'}</div>
-                            <div>${formattedText}</div>
+                            ${targetInfoHTML}
+                            <div style="display:block;">
+                                <div class="msg-user" onclick="appendMentionFromClick('${m.u}')">@${m.u || 'Anonim'}</div>
+                                <span style="font-size:0.75rem; color:var(--text-muted); margin-left:8px;">mesaj attı:</span>
+                            </div>
+                            <div style="margin-top:4px;">${formattedText}</div>
                         </div>
                     `;
                     sonMesaj = m.m;
@@ -618,17 +612,19 @@
                 });
                 
                 if(!firstLoadChat && sonYazan !== user) {
-                    if (sonMesaj.toLowerCase().includes(`@${user}`)) {
-                        triggerLocalNotification(`🚨 Biri Seni Etiketledi!`, `${sonYazan}: ${sonMesaj}`);
+                    const matches = sonMesaj.match(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g);
+                    let targetUsers = matches ? matches.map(x => x.substring(1).toLowerCase()) : [];
+                    if (targetUsers.includes(user.toLowerCase())) {
+                        triggerLocalNotification(`🚨 @${sonYazan} Seni Etiketledi!`, `${sonYazan}: ${sonMesaj}`);
                     } else {
-                        triggerLocalNotification(`💬 Yeni Mesaj`, `${sonYazan}: ${sonMesaj}`);
+                        triggerLocalNotification(`💬 @${sonYazan} Mesaj Gönderdi`, `${sonYazan}: ${sonMesaj}`);
                     }
                 }
             }
             cBox.scrollTop = cBox.scrollHeight;
             firstLoadChat = false;
 
-            // Haber Kartları
+            // Son Dakika Yapılı Haber Kartları
             const hbEl = document.getElementById('haber-list'); hbEl.innerHTML = "";
             if(data.haber) {
                 let sonHaberBaslik = "";
@@ -637,6 +633,7 @@
                         <div class="haber-card">
                             <div class="haber-body">
                                 <div class="card-date">📅 ${val.date || new Date().toLocaleDateString('tr-TR')}</div>
+                                <div class="haber-badge-flash">🔥 SON DAKİKA HABERİ</div>
                                 <h3>${val.name}</h3>
                                 <p>${val.desc}</p>
                             </div>
@@ -647,20 +644,20 @@
             }
             firstLoadHaber = false;
 
-            // Duyuru Kartları
+            // Son Dakika Yapılı Duyuru Kartları
             const dyEl = document.getElementById('duyuru-list'); dyEl.innerHTML = "";
             if(data.duyuru) {
                 Object.entries(data.duyuru).reverse().forEach(([id, val]) => {
                     dyEl.innerHTML += `
                         <div class="duyuru-card-style">
-                            <div class="card-date" style="color:#ef4444;">🚨 ÖNEMLİ DUYURU • ${val.date || ''}</div>
+                            <div class="card-date" style="color:#f59e0b;">⏱️ ${val.date || ''}</div>
+                            <div class="duyuru-badge-flash">📢 SON DAKİKA DUYURUSU</div>
                             <h3>${val.name}</h3>
-                            <p style="color:#cbd5e1;">${val.desc}</p>
+                            <p style="color:#cbd5e1; font-size:0.95rem; line-height:1.5;">${val.desc}</p>
                         </div>`;
                 });
             }
 
-            // Transfer Kartları
             const trEl = document.getElementById('tr-list'); trEl.innerHTML = "";
             if(data.transfer) {
                 Object.entries(data.transfer).reverse().forEach(([id, val]) => {
@@ -678,11 +675,9 @@
                 });
             }
 
-            // Teknik Ekip Kartları
             const krRow = document.getElementById('ekip-kurucu-row'); krRow.innerHTML = "";
             const yoRow = document.getElementById('ekip-yonetici-row'); yoRow.innerHTML = "";
             const uyRow = document.getElementById('ekip-uye-row'); uyRow.innerHTML = "";
-            
             if(data.ekip) {
                 Object.entries(data.ekip).forEach(([id, val]) => {
                     let cardHTML = "";
@@ -699,11 +694,9 @@
                 });
             }
 
-            // Saha Kadrosu
             const saha = document.getElementById('saha'); saha.innerHTML = "";
             if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
 
-            // Admin Kullanıcı Yönetimi Listesi
             const userBox = document.getElementById('adm-all-users-list');
             if(userBox && data.users) {
                 userBox.innerHTML = "";
@@ -713,7 +706,6 @@
                 });
             }
 
-            // Admin Sistem İçerik Kaldırma Listesi
             const mng = document.getElementById('adm-manage');
             if(mng) {
                 mng.innerHTML = "";
