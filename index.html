@@ -2,10 +2,13 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>İman Power FC | İman Power</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #020617;
@@ -17,14 +20,12 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; width: 100vw; min-height: 100vh; }
 
-        /* --- GİRİŞ EKRANI --- */
         #auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .auth-card { background: var(--glass); padding: 40px; border-radius: 30px; border: 2px solid var(--accent); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 40px var(--accent-glow); }
         .auth-card img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 20px; }
 
-        /* --- HEADER & NAV --- */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
         .logo-box { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: 900; color: var(--accent); cursor: pointer; }
@@ -34,7 +35,6 @@
         nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.65rem; padding: 10px 10px; border-radius: 10px; transition: 0.3s; text-transform: uppercase; white-space: nowrap; }
         nav a:hover, nav a.active { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
 
-        /* TELEFONLAR İÇİN REFS_MENÜ DESTEĞİ */
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; gap: 10px; padding: 0.8rem 1rem; }
             nav { width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -42,7 +42,6 @@
             nav ul { flex-wrap: nowrap; padding-bottom: 5px; }
         }
 
-        /* --- SECTIONS --- */
         section { padding: 140px 2rem 60px; max-width: 1300px; margin: 0 auto; display: none; min-height: 100vh; }
         section.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -53,7 +52,6 @@
             .title { font-size: 1.6rem; margin-bottom: 1.5rem; }
         }
 
-        /* --- ANA MENÜ --- */
         #home-content { text-align: center; padding-top: 30px; }
         #home-content img { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--accent); margin-bottom: 20px; box-shadow: 0 0 30px var(--accent-glow); }
         #home-content h1 { font-family: 'Orbitron'; font-size: 3.5rem; margin-bottom: 10px; word-wrap: break-word; }
@@ -63,66 +61,43 @@
             #home-content img { width: 130px; height: 130px; }
         }
 
-        /* --- GRID SYSTEMS --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; position: relative; }
         .card:hover { border-color: var(--accent); transform: scale(1.02); }
         .badge { position: absolute; top: 15px; right: 15px; background: var(--accent); padding: 4px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: bold; }
-        .status-badge { position: absolute; bottom: 15px; right: 15px; padding: 4px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: bold; color: #000; }
 
-        /* --- HABERLER ÖZEL GENİŞ LİSTE --- */
         .haber-list-container { display: flex; flex-direction: column; gap: 30px; }
         .haber-card { background: var(--glass); border-radius: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: 0.3s; }
         @media (min-width: 768px) { .haber-card { flex-direction: row; min-height: 280px; } }
         .haber-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .haber-img-box { width: 100%; position: relative; background: #0f172a; }
-        @media (min-width: 768px) { .haber-img-box { width: 40%; max-width: 400px; min-width: 300px; } }
-        .haber-img-box img { width: 100%; height: 100%; object-fit: cover; min-height: 200px; }
         .haber-body { padding: 35px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; }
         @media (max-width: 768px) { .haber-body { padding: 20px; } }
-        .haber-topic { background: #3b82f6; color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; align-self: flex-start; margin-bottom: 15px; }
         .haber-body h3 { font-family: 'Orbitron'; font-size: 1.7rem; margin-bottom: 12px; color: var(--text); line-height: 1.3; }
         @media (max-width: 768px) { .haber-body h3 { font-size: 1.3rem; } }
         .haber-body p { font-size: 0.98rem; opacity: 0.85; line-height: 1.6; color: #cbd5e1; margin-bottom: 15px; white-space: pre-line; }
-        
-        /* REAKSİYON TASARIMI */
-        .haber-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .reaction-container { display: flex; gap: 8px; flex-wrap: wrap; }
-        .reaction-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 12px; color: var(--text); font-size: 0.9rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 5px; font-weight: 600; }
-        .reaction-btn:hover { background: rgba(16, 185, 129, 0.1); border-color: var(--accent); }
-        .reaction-btn.user-reacted { background: rgba(16, 185, 129, 0.2); border-color: var(--accent); color: var(--accent); }
 
-        /* --- DUYURU ÖZEL BÜYÜTÜLMÜŞ GRID --- */
         .duyuru-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         @media (max-width: 480px) { .duyuru-grid { grid-template-columns: 1fr; } }
         .card.duyuru-card-style { padding: 35px; border-left: 4px solid var(--accent); }
-        @media (max-width: 768px) { .card.duyuru-card-style { padding: 20px; } }
-        .card.duyuru-card-style h3 { font-size: 1.5rem; font-family: 'Orbitron'; letter-spacing: 1px; color: var(--text); }
+        .card.duyuru-card-style h3 { font-size: 1.5rem; font-family: 'Orbitron'; color: var(--text); }
         .card.duyuru-card-style p { font-size: 1rem; line-height: 1.6; margin-top: 15px; opacity: 0.9; }
 
-        /* --- TRANSFER ÖZEL 3'LÜ BÜYÜK GRID --- */
         .transfer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         @media (max-width: 480px) { .transfer-grid { grid-template-columns: 1fr; } }
-        @media (min-width: 992px) { .transfer-grid { grid-template-columns: repeat(3, 1fr); } }
         .card.transfer-card-style { padding: 35px 30px; min-height: 200px; }
-        @media (max-width: 768px) { .card.transfer-card-style { padding: 20px; } }
         .card.transfer-card-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #f8fafc; }
 
-        /* --- EKİP ÖZEL HİYERARŞİ STİLLERİ --- */
         .ekip-container { display: flex; flex-direction: column; gap: 40px; }
         .kurucu-row { display: grid; grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; width: 100%; }
         .yonetici-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 25px; }
         .uye-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); gap: 25px; }
         @media (max-width: 768px) { .yonetici-row, .uye-row { grid-template-columns: 1fr; } }
-        @media (min-width: 992px) { .uye-row { grid-template-columns: repeat(3, 1fr); } }
 
         .card.kurucu-style { padding: 45px; border: 3px solid #fbbf24; box-shadow: 0 0 30px rgba(251, 191, 36, 0.3); text-align: center; }
         .card.kurucu-style h3 { font-size: 2rem; font-family: 'Orbitron'; margin-bottom: 10px; }
         .card.yonetici-style { padding: 35px; border: 2px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
-        .card.yonetici-style h3 { font-size: 1.4rem; }
         .card.personel-style { padding: 30px; border-bottom: 4px solid #a78bfa; }
 
-        /* --- FUTBOL SAHASI MASAÜSTÜ & MOBİL UYUMU --- */
         .pitch-container { width: 100%; display: flex; justify-content: center; overflow: hidden; padding: 10px 0; }
         .pitch { width: 100%; max-width: 520px; height: 740px; background: #064e3b; margin: 0 auto; border: 4px solid #fff; border-radius: 15px; position: relative; background-image: repeating-linear-gradient(0deg, #064e3b, #064e3b 65px, #065f46 65px, #065f46 130px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); transform-origin: top center; }
         @media (max-width: 540px) { .pitch { transform: scale(0.7); margin-bottom: -220px; } }
@@ -132,32 +107,24 @@
         .shirt { width: 52px; height: 52px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-shadow: 1px 1px 2px #000; }
         .p-name { background: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 10px; margin-top: 5px; border: 1px solid var(--accent); font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        /* --- CANLI SOHBET --- */
         .chat-area { height: 500px; background: var(--glass); border-radius: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
         @media (max-width: 768px) { .chat-area { height: 400px; } }
         #chat-msgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
         .msg { background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 15px; border-left: 3px solid var(--accent); }
-        .msg.highlighted-tag { background: rgba(251, 191, 36, 0.15); border-left-color: #fbbf24; border-right: 2px solid #fbbf24; }
 
-        /* --- ADMİN PANELİ --- */
         input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #1e293b; background: #0f172a; color: white; font-size: 1rem; }
         textarea { height: 120px; resize: none; }
         .btn { padding: 14px; border: none; border-radius: 10px; color: white; font-weight: 800; cursor: pointer; background: var(--accent); width: 100%; transition: 0.3s; text-transform: uppercase; font-size: 1rem; }
         .btn:hover { filter: brightness(1.2); box-shadow: 0 0 15px var(--accent-glow); }
-        .admin-box-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .admin-box-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .del-btn { background: #ef4444; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.7rem; border: none; color: white; }
         
-        /* --- CANLI DESTEK & EĞLENCE ODASI YÖNLENDİRME ALANLARI --- */
         .live-support-box { background: var(--glass); max-width: 650px; margin: 0 auto; padding: 40px; border-radius: 24px; border: 2px solid #3b82f6; text-align: center; box-shadow: 0 10px 35px rgba(59, 130, 246, 0.2); }
         @media (max-width: 768px) { .live-support-box { padding: 20px; } }
 
-        /* KULLANICI TAKİP VE AKTİFLİK PANEL STİLLERİ */
         .user-list-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
         .user-log-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 8px; border-radius: 10px; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
         .user-item-row { display: flex; flex-direction: column; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 6px; font-size: 0.8rem; border-left: 3px solid #64748b; }
-        .user-item-row.online-status { border-left-color: var(--accent); }
-        .user-item-top { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 4px; }
-        .log-item-row { padding: 6px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #cbd5e1; word-break: break-all; }
     </style>
 </head>
 <body>
@@ -166,23 +133,22 @@
 
     <div id="auth-screen">
         <div class="auth-card">
-            <img src="logo.png" onerror="this.src='https://placehold.co/150x150/0f172a/10b981?text=IMAN+POWER'" alt="Logo">
+            <img src="logo.png" alt="Logo" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
             <h2 id="auth-title" style="margin-bottom:20px; font-family:'Orbitron'; color:var(--accent); letter-spacing: 2px;">SİSTEME GİRİŞ</h2>
-            <input type="text" id="u-in" placeholder="E-posta Adresi (Örn: berat@test.com)">
+            <input type="text" id="u-in" placeholder="Kullanıcı Adı">
             <input type="password" id="p-in" placeholder="Şifre">
             <button class="btn" id="auth-btn" onclick="handleAuth()">GİRİŞ YAP</button>
-            <button class="btn" id="reg-btn" onclick="handleRegister()" style="background: #2563eb; margin-top: 10px;">YENİ ÜYE KAYDI</button>
             
             <div id="auth-info-box" style="margin-top:20px; padding:12px; border-radius:12px; background:rgba(16, 185, 129, 0.05); border:1px dashed var(--border); font-size:0.8rem; line-height:1.4; color:#94a3b8; text-align:center;">
-                🔒 <b style="color:var(--accent);">Yeni Güçlü Veritabanı Sistemine Geçildi!</b><br>
-                Firebase altyapısı aktiftir. Anlık bildirimler ve etiketleme motoru dahil edilmiştir.
+                🔒 <b style="color:var(--accent);">Kayıtlar Kapatılmıştır!</b><br>
+                Sisteme dışarıdan üye alımı durdurulmuştur. Sadece yönetim tarafından eklenen güvenli hesaplar giriş yapabilir.
             </div>
         </div>
     </div>
 
     <header>
         <div class="nav-container">
-            <div class="logo-box" onclick="nav('home')"><img src="logo.png" onerror="this.src='https://placehold.co/40x40/0f172a/10b981?text=IP'"><span>İMAN POWER</span></div>
+            <div class="logo-box" onclick="nav('home')"><img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'"><span>İMAN POWER</span></div>
             <nav><ul>
                 <li><a href="#" onclick="nav('home')" class="n-l active">ANA SAYFA</a></li>
                 <li><a href="#" onclick="nav('haber')" class="n-l">HABERLER</a></li>
@@ -200,7 +166,7 @@
 
     <section id="home" class="active">
         <div id="home-content">
-            <img src="logo.png" onerror="this.src='https://placehold.co/150x150/0f172a/10b981?text=IMAN+POWER'">
+            <img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
             <h1>BERAT CİHAD YETEN</h1>
             <p style="color:var(--accent); font-weight:900; letter-spacing:4px; font-size: 1.3rem;">KURUCU VE BAŞKAN</p>
             <p style="font-style:italic; margin-top:25px; font-size: 1.5rem; color: #94a3b8; font-weight:600;">"Sahada İman, Kalpte Güç, Hedef Şampiyonluk!"</p>
@@ -224,7 +190,7 @@
         <div class="chat-area">
             <div id="chat-msgs"></div>
             <div style="display:flex; padding:15px; gap:10px; background:rgba(0,0,0,0.4);">
-                <input type="text" id="m-in" placeholder="Mesaj gönder... (Etiketlemek için @isim yazın)" style="margin:0;">
+                <input type="text" id="m-in" placeholder="Mesaj gönder..." style="margin:0;">
                 <button class="btn" style="width:120px;" onclick="send()">GÖNDER</button>
             </div>
         </div>
@@ -291,28 +257,28 @@
             <div class="admin-box-layout">
                 
                 <div class="card" style="border: 2px solid #3b82f6;">
-                    <h3>👤 KULLANICI AKTİFLİK & KONUM</h3>
-                    <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:5px;">Çevrimiçi Kullanıcılar ve Gerçek Adresleri:</p>
+                    <h3>👤 KULLANICI AKTİFLİK</h3>
                     <div class="user-list-scroller" id="adm-all-users-list"></div>
+                    
+                    <div style="background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; margin-bottom: 12px;">
+                        <p style="font-size:0.75rem; color:var(--accent); font-weight: bold; margin-bottom: 5px;">Yeni Güvenilir Kullanıcı Ekle:</p>
+                        <input type="text" id="new-secure-user" placeholder="Kullanıcı Adı" style="height:35px; font-size:0.8rem; margin-bottom:5px;">
+                        <input type="text" id="new-secure-pass" placeholder="Şifre" style="height:35px; font-size:0.8rem; margin-bottom:5px;">
+                        <button class="btn" style="height:32px; font-size:0.75rem; background:#3b82f6;" onclick="addSecureUserFromAdmin()">SİSTEME KAYDET</button>
+                    </div>
                 </div>
 
                 <div class="card" style="border: 2px solid #a78bfa;">
                     <h3>📋 SİSTEM ERİŞİM LOGLARI</h3>
-                    <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:5px;">Anlık Giriş Çıkış ve Sızma Kayıtları:</p>
                     <div class="user-log-scroller" id="adm-system-logs-box"></div>
                     <button class="btn" style="background:#ef4444; height:28px; font-size:0.7rem; margin-top:8px;" onclick="clearAllSystemLogs()">LOGLARI TEMİZLE</button>
                 </div>
 
                 <div class="card" style="border: 2px solid #ef4444;">
                     <h3>🎵 CANLI PLAYLIST SİSTEMİ</h3>
-                    <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:5px;">Çalma Listesi ID'leri (Her satıra bir tane):</p>
-                    <textarea id="adm-playlist-urls" placeholder="Örn:&#10;EY07kVGs_Jk&#10;https://siteniz.com/sarki.mp3" style="height:90px;"></textarea>
-                    
-                    <button class="btn" style="background:#10b981; margin-bottom:10px;" onclick="updateLivePlaylist()">LİSTEYİ BAŞLAT / GÜNCELLE</button>
-                    <button class="btn" style="background:#ef4444; margin-bottom:15px;" onclick="stopLiveMusic()">MÜZİĞİ DURDUR / KAPAT</button>
-                    
-                    <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:5px;">Sitedeki Herkes İçin Ses Seviyesi:</p>
-                    <input type="range" id="adm-music-vol" min="0" max="100" value="50" oninput="updateLiveVolume(this.value)">
+                    <textarea id="adm-playlist-urls" placeholder="Örn:&#10;EY07kVGs_Jk" style="height:90px;"></textarea>
+                    <button class="btn" style="background:#10b981; margin-bottom:10px;" onclick="updateLivePlaylist()">MÜZİĞİ BAŞLAT</button>
+                    <button class="btn" style="background:#ef4444; margin-bottom:15px;" onclick="stopLiveMusic()">MÜZİĞİ KAPAT</button>
                 </div>
 
                 <div class="card">
@@ -336,14 +302,7 @@
                     <div id="ekip-rol-box" style="display:none;"><select id="a-role"><option value="Kurucu">Kurucu</option><option value="Başkan">Başkan</option><option value="Yönetici">Yönetici</option><option value="Personel">Personel</option><option value="Üye">Üye</option></select></div>
                     <div id="transfer-durum-box" style="display:none;">
                         <select id="a-trstatus">
-                            <option value="Yakından İlgileniliyor">Yakından İlgileniliyor</option>
-                            <option value="Görüşme Aşamasında">Görüşme Aşamasında</option>
-                            <option value="Alındı">Alındı</option>
-                            <option value="Sözleşme Feshedildi">Sözleşme Feshedildi</option>
-                            <option value="Satıldı">Satıldı</option>
-                            <option value="Yalanlandı">Yalanlandı</option>
-                            <option value="Reddedildi">Reddedildi</option>
-                            <option value="Vazgeçildi">Vazgeçildi</option>
+                            <option value="Yakından İlgileniliyor">Yakından İlgileniliyor</option><option value="Görşme Aşamasında">Görüşme Aşamasında</option><option value="Alındı">Alındı</option>
                         </select>
                     </div>
                     <textarea id="a-d" placeholder="Detaylar..."></textarea>
@@ -357,181 +316,93 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue, set, remove, onDisconnect } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, set, remove, onDisconnect } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // Senin Yepyeni "kartalhaber-49ae6" Firebase Konfigürasyonun
         const firebaseConfig = {
-            apiKey: "AIzaSyDEbenlp7KcVZ2oE90iEHTTl2oEuGFVGKs",
-            authDomain: "kartalhaber-49ae6.firebaseapp.com",
-            databaseURL: "https://kartalhaber-49ae6-default-rtdb.firebaseio.com",
-            projectId: "kartalhaber-49ae6",
-            storageBucket: "kartalhaber-49ae6.firebasestorage.app",
-            messagingSenderId: "804745909398",
-            appId: "1:804745909398:web:d4ecaf7174886bbe835eb7",
-            measurementId: "G-TV8NLXQTNP"
+            apiKey: "AIzaSyDy4ZUv_wZsntWSIDbcolvpqDTBvWuSdrk",
+            authDomain: "imanpowerveri.firebaseapp.com",
+            databaseURL: "https://imanpowerveri-default-rtdb.firebaseio.com",
+            projectId: "imanpowerveri",
+            storageBucket: "imanpowerveri.firebasestorage.app",
+            messagingSenderId: "891464029314",
+            appId: "1:891464029314:web:581bd3b2ed3d7c6af2d09b",
+            measurementId: "G-4T6XSDBDL5"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const auth = getAuth(app);
 
-        let userEmailClean = "";
+        let user = "";
         let ytPlayer = null;
         let audioPlayer = null;
         let currentMusicId = "";
         let currentVolume = 50;
         let activePlaylistTracks = [];
         let currentTrackIndex = 0;
-        let userLocationDataStr = "Yükleniyor...";
-        let globalIpAddress = "Bulunuyor...";
 
-        // Tarayıcı içi bildirim izni isteme motoru
-        if (Notification.permission !== "granted" && Notification.permission !== "denied") {
-            Notification.requestPermission();
+        // Mobil Bildirim Tetikleyicisi (Tarayıcı ve Uygulama Bildirim İzni)
+        function setupNotifications() {
+            if ("Notification" in window) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        console.log("Bildirim izni onaylandı!");
+                    }
+                });
+            }
         }
 
-        function sendBrowserNotification(title, body) {
-            if (Notification.permission === "granted") {
+        function triggerLocalNotification(title, body) {
+            if ("Notification" in window && Notification.permission === "granted") {
                 new Notification(title, { body: body, icon: 'logo.png' });
             }
         }
 
-        // IP ve Konum Bulma Motoru
-        function fetchExactLocationAndIp() {
-            fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(ipData => {
-                    globalIpAddress = ipData.ip;
-                    userLocationDataStr = `IP: ${globalIpAddress} (Konum alınıyor)`;
-                    
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(
-                            (position) => {
-                                const lat = position.coords.latitude.toFixed(5);
-                                const lon = position.coords.longitude.toFixed(5);
-                                userLocationDataStr = `IP: ${globalIpAddress} | Konum: ${lat}, ${lon}`;
-                                if (userEmailClean) setUserPresence(userEmailClean, true);
-                            },
-                            () => {
-                                fetch(`https://ipapi.co/${globalIpAddress}/json/`)
-                                    .then(res => res.json())
-                                    .then(geo => {
-                                        userLocationDataStr = `IP: ${globalIpAddress} | Şehir: ${geo.city || 'Bilinmiyor'}`;
-                                        if (userEmailClean) setUserPresence(userEmailClean, true);
-                                    }).catch(() => {
-                                        userLocationDataStr = `IP: ${globalIpAddress}`;
-                                        if (userEmailClean) setUserPresence(userEmailClean, true);
-                                    });
-                            },
-                            { enableHighAccuracy: true, timeout: 10000 }
-                        );
-                    }
-                }).catch(() => {
-                    userLocationDataStr = "IP Alınamadı.";
-                });
-        }
-
-        fetchExactLocationAndIp();
-
-        function startMusicEngine() {
-            if (currentMusicId) {
-                playMusic(currentMusicId, currentVolume);
-            }
-        }
-
-        function setUserPresence(userKey, isOnline) {
-            if(!userKey) return;
-            const presenceRef = ref(db, 'users/' + userKey + '/presence');
-            const statusData = {
-                status: isOnline ? "online" : "offline",
-                lastActive: new Date().toLocaleString('tr-TR'),
-                address: userLocationDataStr
-            };
-            
-            set(presenceRef, statusData);
-
-            if(isOnline) {
-                onDisconnect(presenceRef).set({
-                    status: "offline",
-                    lastActive: new Date().toLocaleString('tr-TR'),
-                    address: userLocationDataStr
-                });
-            }
-        }
-
-        onAuthStateChanged(auth, (firebaseUser) => {
-            if (firebaseUser) {
-                userEmailClean = firebaseUser.email.replace(/\./g, '_');
-                document.getElementById('auth-screen').style.display = 'none'; 
-                
-                setUserPresence(userEmailClean, true);
-                push(ref(db, 'user_logs'), {
-                    username: firebaseUser.email,
-                    action: `Giriş Başarılı [${userLocationDataStr}]`,
-                    device: navigator.userAgent.slice(0, 50),
-                    timestamp: new Date().toLocaleString('tr-TR')
-                });
-
-                setTimeout(startMusicEngine, 500);
-            } else {
-                document.getElementById('auth-screen').style.display = 'flex';
-            }
-        });
-
         window.handleAuth = () => {
-            const email = document.getElementById('u-in').value.trim();
+            const username = document.getElementById('u-in').value.trim().toLowerCase();
             const password = document.getElementById('p-in').value;
-            if(!email || !password) return alert("Boş bırakılamaz!");
+            if(!username || !password) return alert("Boş bırakılamaz!");
 
-            signInWithEmailAndPassword(auth, email, password)
-                .catch((error) => {
-                    alert("Giriş Başarısız: " + error.message);
+            onValue(ref(db, 'users/' + username), (snap) => {
+                if(snap.exists() && snap.val().password === password) { 
+                    user = username; 
+                    document.getElementById('auth-screen').style.display = 'none'; 
+                    setupNotifications();
+                    
+                    set(ref(db, 'users/' + username + '/presence'), {
+                        status: "online",
+                        lastActive: new Date().toLocaleString('tr-TR')
+                    });
+
+                    onDisconnect(ref(db, 'users/' + username + '/presence')).set({
+                        status: "offline",
+                        lastActive: new Date().toLocaleString('tr-TR')
+                    });
+
                     push(ref(db, 'user_logs'), {
-                        username: email,
-                        action: `❌ HATALI GİRİŞ / SIZMA GİRİŞİMİ [${userLocationDataStr}]`,
-                        device: navigator.userAgent.slice(0, 50),
+                        username: username,
+                        action: `Giriş Başarılı (Mobil/Web)`,
                         timestamp: new Date().toLocaleString('tr-TR')
                     });
-                });
+                } else {
+                    alert("Hatalı Giriş Bilgisi!");
+                }
+            }, { onlyOnce: true });
         };
-
-        window.handleRegister = () => {
-            const email = document.getElementById('u-in').value.trim();
-            const password = document.getElementById('p-in').value;
-            if(!email || !password) return alert("E-posta ve şifre doldurulmalıdır!");
-            if(password.length < 6) return alert("Şifre en az 6 karakter olmalıdır!");
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then(() => alert("Kayıt oluşturuldu ve giriş yapıldı!"))
-                .catch((error) => alert("Kayıt Hatası: " + error.message));
-        };
-
-        setInterval(() => {
-            if(userEmailClean) setUserPresence(userEmailClean, true);
-        }, 120000);
 
         window.nav = (id) => {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.n-l').forEach(l => l.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if(window.event && window.event.target.classList.contains('n-l')) window.event.target.classList.add('active');
-            if(userEmailClean) setUserPresence(userEmailClean, true);
         };
 
         window.openAdm = () => { if(document.getElementById('adm-k').value === "imanpoweradmini2026") { document.getElementById('adm-lock').style.display='none'; document.getElementById('adm-box').style.display='block'; } else alert("Yanlış!"); };
 
-        window.clearAllSystemLogs = () => {
-            if(confirm("Tüm sistem log geçmişini temizlemek istiyor musunuz?")) {
-                remove(ref(db, 'user_logs'));
-            }
-        };
-
-        window.checkType = (val) => {
-            document.getElementById('ekip-rol-box').style.display = (val === 'ekip') ? 'block' : 'none';
-            document.getElementById('transfer-durum-box').style.display = (val === 'transfer') ? 'block' : 'none';
-            document.getElementById('haber-ekstra-box').style.display = (val === 'haber') ? 'block' : 'none';
+        window.addSecureUserFromAdmin = () => {
+            const newUser = document.getElementById('new-secure-user').value.trim().toLowerCase();
+            const newPass = document.getElementById('new-secure-pass').value;
+            if(!newUser || !newPass) return alert("Eksik bilgi!");
+            set(ref(db, 'users/' + newUser), { password: newPass }).then(() => alert("Kullanıcı kaydedildi!"));
         };
 
         window.savePlayer = () => {
@@ -539,7 +410,7 @@
             const num = document.getElementById('p-num-input').value.trim();
             const pos = document.getElementById('p-pos-input').value;
             if(!name || !num) return alert("Eksik!");
-            set(ref(db, 'kadro/' + pos), { name, num, pos }).then(() => alert("Oyuncu yerleştirildi!"));
+            set(ref(db, 'kadro/' + pos), { name, num, pos });
         };
 
         window.saveData = () => {
@@ -550,274 +421,70 @@
             const payload = { name, desc, date: new Date().toLocaleDateString() };
             if(type === 'ekip') payload.role = document.getElementById('a-role').value;
             if(type === 'transfer') payload.status = document.getElementById('a-trstatus').value;
-            if(type === 'haber') { payload.topic = document.getElementById('a-h-topic').value || "Genel"; payload.img = document.getElementById('a-h-img').value || "logo.png"; }
-            
-            // Veri kaydedilirken tetiklenecek anlık bildirim bayrağı
-            payload.triggerNotification = true;
-
-            push(ref(db, type), payload).then(() => alert("Başarıyla eklendi!"));
+            push(ref(db, type), payload).then(() => {
+                alert("Canlı Olarak Gönderildi!");
+            });
         };
-
-        window.delData = (path) => { if(confirm("Silinsin mi?")) remove(ref(db, path)); };
 
         window.send = () => {
             const m = document.getElementById('m-in').value.trim();
-            const displayName = auth.currentUser ? auth.currentUser.email.split('@')[0] : 'Anonim';
-            if(m) { 
-                push(ref(db, 'chat'), { 
-                    u: displayName, 
-                    m: m,
-                    t: new Date().getTime()
-                }); 
-                document.getElementById('m-in').value=''; 
-            }
-            if(userEmailClean) setUserPresence(userEmailClean, true);
-        };
-
-        window.updateLivePlaylist = () => {
-            const rawText = document.getElementById('adm-playlist-urls').value.trim();
-            if(!rawText) return alert("Lütfen en az bir ID veya link girin!");
-            const tracks = rawText.split('\n').map(t => t.trim()).filter(t => t.length > 0);
-            
-            set(ref(db, 'liveMusic'), {
-                playlist: tracks,
-                currentIndex: 0,
-                currentTrack: tracks[0],
-                volume: currentVolume,
-                status: "playing",
-                timestamp: Date.now()
-            }).then(() => alert("Çalma listesi tüm sitede başlatıldı!"));
-        };
-
-        window.stopLiveMusic = () => {
-            set(ref(db, 'liveMusic/status'), "stopped").then(() => alert("Müzik tüm sitede durduruldu!"));
-        };
-
-        window.updateLiveVolume = (vol) => {
-            set(ref(db, 'liveMusic/volume'), parseInt(vol));
-        };
-
-        function handleTrackEnd() {
-            let nextIndex = currentTrackIndex + 1;
-            if (nextIndex >= activePlaylistTracks.length) { nextIndex = 0; }
-            if (activePlaylistTracks[nextIndex]) {
-                set(ref(db, 'liveMusic/currentIndex'), nextIndex);
-                set(ref(db, 'liveMusic/currentTrack'), activePlaylistTracks[nextIndex]);
-                set(ref(db, 'liveMusic/timestamp'), Date.now());
-            }
-        }
-
-        function playMusic(trackId, volume) {
-            if (!userEmailClean) return;
-            const container = document.getElementById('music-player-container');
-            if (!trackId || trackId === "") {
-                if (ytPlayer) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
-                if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
-                return;
-            }
-            if (trackId.includes('.mp3') || trackId.includes('http://') || trackId.includes('https://')) {
-                if (ytPlayer) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
-                container.innerHTML = ""; 
-                if (!audioPlayer) {
-                    audioPlayer = new Audio(trackId);
-                    audioPlayer.addEventListener('ended', handleTrackEnd);
-                } else if (audioPlayer.src !== trackId) {
-                    audioPlayer.src = trackId;
-                }
-                audioPlayer.volume = volume / 100;
-                audioPlayer.play().catch(e => console.log("Müzik engellendi."));
-            } else {
-                if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
-                container.innerHTML = `<div id="yt-player-frame"></div>`;
-                try {
-                    ytPlayer = new YT.Player('yt-player-frame', {
-                        height: '0', width: '0', videoId: trackId,
-                        playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0 },
-                        events: {
-                            'onReady': (event) => { event.target.setVolume(volume); event.target.playVideo(); },
-                            'onStateChange': (event) => { if (event.data === 0) { handleTrackEnd(); } }
-                        }
-                    });
-                } catch(e) { console.log("YT Hazırlanıyor..."); }
-            }
-        }
-
-        window.reactToHaber = (haberId, emoji) => {
-            const currentU = auth.currentUser ? auth.currentUser.email.replace(/\./g, '_') : null;
-            if(!currentU) return alert("Reaksiyon bırakabilmek için giriş yapmalısınız!");
-            onValue(ref(db, `haber/${haberId}/reactions`), (snap) => {
-                const reactions = snap.val() || {};
-                let activeEmoji = null;
-                Object.entries(reactions).forEach(([emo, users]) => {
-                    if (users && users[currentU]) { activeEmoji = emo; }
-                });
-                if (activeEmoji === emoji) {
-                    remove(ref(db, `haber/${haberId}/reactions/${emoji}/${currentU}`));
-                } else {
-                    if (activeEmoji) { remove(ref(db, `haber/${haberId}/reactions/${activeEmoji}/${currentU}`)); }
-                    set(ref(db, `haber/${haberId}/reactions/${emoji}/${currentU}`), true);
-                }
-            }, { onlyOnce: true });
+            if(m) { push(ref(db, 'chat'), { u: user, m: m }); document.getElementById('m-in').value=''; }
         };
 
         const pLoc = { GK: {t:'88%',l:'50%'}, LB: {t:'68%',l:'15%'}, CB1: {t:'68%',l:'38%'}, CB2: {t:'68%',l:'62%'}, RB: {t:'68%',l:'85%'}, LM: {t:'43%',l:'15%'}, CM1: {t:'43%',l:'38%'}, CM2: {t:'43%',l:'62%'}, RM: {t:'43%',l:'85%'}, ST1: {t:'16%',l:'35%'}, ST2: {t:'16%',l:'65%'} };
 
-        // İlk yükleme zaman takibi (Eski içeriklerin tekrar tekrar bildirim atmasını engellemek için)
-        let systemStartTime = new Date().getTime();
+        // Realtime Data Dinleme ve Canlı Bildirim Tetiklemeleri
+        let firstLoadChat = true;
+        let firstLoadHaber = true;
 
         onValue(ref(db, '/'), (snap) => {
             const data = snap.val() || {};
-            const currentU = auth.currentUser ? auth.currentUser.email.replace(/\./g, '_') : null;
-            const currentUPlain = auth.currentUser ? auth.currentUser.email.split('@')[0] : '';
             
-            const userBox = document.getElementById('adm-all-users-list');
-            if(userBox) {
-                userBox.innerHTML = "";
-                if(data.users) {
-                    Object.entries(data.users).forEach(([uName, uData]) => {
-                        const presence = uData.presence || {};
-                        const isOnline = presence.status === 'online';
-                        const badgeColor = isOnline ? '#10b981' : '#64748b';
-                        const badgeText = isOnline ? 'Aktif 🟢' : 'Çevrimdışı 🔴';
-                        const locInfo = presence.address || 'Konum Alınamadı';
-                        const lastTime = presence.lastActive || 'Kayıt Yok';
-                        const rawName = uName.replace(/_/g, '.');
-                        userBox.innerHTML += `
-                            <div class="user-item-row ${isOnline ? 'online-status' : ''}">
-                                <div class="user-item-top"><span>👤 <b>${rawName}</b></span><span style="color:${badgeColor}; font-weight:bold; font-size:0.75rem;">${badgeText}</span></div>
-                                <div style="font-size:0.7rem; color:#cbd5e1; margin-top:2px;">📍 ${locInfo}</div>
-                                <div style="font-size:0.65rem; opacity:0.6; margin-top:4px;"><span>🕒 Son Hareket: ${lastTime}</span></div>
-                            </div>`;
-                    });
-                }
-            }
-
-            const logBox = document.getElementById('adm-system-logs-box');
-            if(logBox) {
-                logBox.innerHTML = "";
-                if(data.user_logs) {
-                    Object.values(data.user_logs).reverse().forEach(log => {
-                        logBox.innerHTML += `
-                            <div class="log-item-row">🕒 ${log.timestamp} | <b>${log.username}</b> -> <span style="color:${log.action.includes('❌') ? '#ef4444' : '#10b981'}">${log.action}</span> <br> <span style="opacity:0.4; font-size:0.65rem;">(${log.device})</span></div>`;
-                    });
-                }
-            }
-
-            if (data.liveMusic) {
-                const track = data.liveMusic.currentTrack || "";
-                const vol = data.liveMusic.volume !== undefined ? data.liveMusic.volume : 50;
-                const status = data.liveMusic.status || "playing";
-                activePlaylistTracks = data.liveMusic.playlist || [];
-                currentTrackIndex = data.liveMusic.currentIndex !== undefined ? data.liveMusic.currentIndex : 0;
-                currentVolume = vol;
-                const volInput = document.getElementById('adm-music-vol');
-                if (volInput) volInput.value = vol;
-                if (status === "stopped") {
-                    if (ytPlayer) { try { ytPlayer.stopVideo(); } catch(e){} }
-                    if (audioPlayer) { audioPlayer.pause(); }
-                    currentMusicId = "";
-                } else {
-                    if (track !== currentMusicId) {
-                        currentMusicId = track;
-                        if (userEmailClean) playMusic(track, vol);
-                    } else {
-                        if (ytPlayer && typeof ytPlayer.setVolume === 'function') { ytPlayer.setVolume(vol); }
-                        if (audioPlayer) { audioPlayer.volume = vol / 100; }
-                    }
-                }
-                const txtArea = document.getElementById('adm-playlist-urls');
-                if (txtArea && document.activeElement !== txtArea && activePlaylistTracks.length > 0) { txtArea.value = activePlaylistTracks.join('\n'); }
-            }
-
-            const saha = document.getElementById('saha'); saha.innerHTML = "";
-            if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
-            
-            // Canlı Chat ve Etiketleme Motoru
+            // Chat Dinleme ve Mobil Bildirim Gönderme
             const cBox = document.getElementById('chat-msgs'); cBox.innerHTML = "";
             if(data.chat) {
+                let sonMesaj = "";
+                let sonYazan = "";
                 Object.values(data.chat).forEach(m => { 
-                    let isTagged = false;
-                    // Eğer mesajda @kullanıcıadı geçiyorsa ve o kullanıcı bizsek vurgula ve bildirim gönder
-                    if (currentUPlain && m.m.includes(`@${currentUPlain}`)) {
-                        isTagged = true;
-                        // Mesaj yeniyse (son 3 saniye içinde atıldıysa) tarayıcı bildirimi gönder
-                        if (m.t && (new Date().getTime() - m.t) < 3000 && m.u !== currentUPlain) {
-                            sendBrowserNotification("💬 Chat'te Etiketlendin!", `${m.u}: ${m.m}`);
-                        }
-                    }
-                    cBox.innerHTML += `<div class="msg ${isTagged ? 'highlighted-tag' : ''}"><b>${m.u || 'Anonim'}:</b> ${m.m}</div>`; 
+                    cBox.innerHTML += `<div class="msg"><b>${m.u || 'Anonim'}:</b> ${m.m}</div>`; 
+                    sonMesaj = m.m;
+                    sonYazan = m.u;
                 });
+                if(!firstLoadChat && sonYazan !== user) {
+                    triggerLocalNotification(`💬 Yeni Tribün Mesajı`, `${sonYazan}: ${sonMesaj}`);
+                }
             }
             cBox.scrollTop = cBox.scrollHeight;
-            
-            // Haberleri Getirme ve Bildirim Motoru
+            firstLoadChat = false;
+
+            // Haber Dinleme ve Mobil Bildirim
             const hbEl = document.getElementById('haber-list'); hbEl.innerHTML = "";
             if(data.haber) {
-                const haberArray = Object.entries(data.haber).reverse();
-                haberArray.forEach(([id, val]) => {
-                    const reacts = val.reactions || {};
-                    const emoCounts = { '😎': 0, '✅': 0, '😲': 0, '😡': 0, '😂': 0 };
-                    const emoActive = { '😎': '', '✅': '', '😲': '', '😡': '', '😂': '' };
-                    Object.entries(reacts).forEach(([emo, users]) => {
-                        if(users) { emoCounts[emo] = Object.keys(users).length; if(currentU && users[currentU]) { emoActive[emo] = 'user-reacted'; } }
-                    });
+                let sonHaberBaslik = "";
+                Object.entries(data.haber).reverse().forEach(([id, val]) => {
+                    hbEl.innerHTML += `<div class="haber-card"><div class="haber-body"><h3>${val.name}</h3><p>${val.desc}</p></div></div>`;
+                    if(!sonHaberBaslik) sonHaberBaslik = val.name;
+                });
+                if(!firstLoadHaber) {
+                    triggerLocalNotification(`📢 Son Dakika Haberi!`, sonHaberBaslik);
+                }
+            }
+            firstLoadHaber = false;
 
-                    // Yeni haber kontrolü ve anlık push bildirim tetikleyicisi
-                    if(val.triggerNotification && currentUPlain && data.user_logs) {
-                        sendBrowserNotification("📰 Yeni Kulüp Haberi!", val.name);
-                        // Bildirimin sonsuz döngüye girmemesi için bayrağı yerel olarak pasif gibi sayıyoruz
-                    }
+            // Saha Kadrosu Güncelleme
+            const saha = document.getElementById('saha'); saha.innerHTML = "";
+            if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
 
-                    hbEl.innerHTML += `
-                        <div class="haber-card">
-                            <div class="haber-img-box"><img src="${val.img}" onerror="this.src='https://placehold.co/400x300/0f172a/10b981?text=IMAN+POWER'"></div>
-                            <div class="haber-body">
-                                <span class="haber-topic">${val.topic}</span><h3>${val.name}</h3><p>${val.desc}</p>
-                                <div class="haber-footer">
-                                    <small>${val.date}</small>
-                                    <div class="reaction-container">
-                                        <button class="reaction-btn ${emoActive['😎']}" onclick="reactToHaber('${id}', '😎')">😎 <span>${emoCounts['😎']}</span></button>
-                                        <button class="reaction-btn ${emoActive['✅']}" onclick="reactToHaber('${id}', '✅')">✅ <span>${emoCounts['✅']}</span></button>
-                                        <button class="reaction-btn ${emoActive['😲']}" onclick="reactToHaber('${id}', '😲')">😲 <span>${emoCounts['😲']}</span></button>
-                                        <button class="reaction-btn ${emoActive['😡']}" onclick="reactToHaber('${id}', '😡')">😡 <span>${emoCounts['😡']}</span></button>
-                                        <button class="reaction-btn ${emoActive['😂']}" onclick="reactToHaber('${id}', '😂')">😂 <span>${emoCounts['😂']}</span></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
+            // Admin Listesi Güncelleme
+            const userBox = document.getElementById('adm-all-users-list');
+            if(userBox && data.users) {
+                userBox.innerHTML = "";
+                Object.entries(data.users).forEach(([uName, uData]) => {
+                    const presence = uData.presence || {};
+                    userBox.innerHTML += `<div class="user-item-row">👤 <b>${uName}</b> [${presence.status === 'online' ? '🟢' : '🔴'}]</div>`;
                 });
             }
-
-            // Duyurular ve Bildirim Motoru
-            const dyEl = document.getElementById('duyuru-list'); dyEl.innerHTML = "";
-            if(data.duyuru) {
-                Object.values(data.duyuru).forEach(val => { 
-                    dyEl.innerHTML += `<div class="card duyuru-card-style"><span class="badge">DUYURU</span><h3>${val.name}</h3><p>${val.desc}</p><small>${val.date}</small></div>`; 
-                });
-            }
-            
-            const trEl = document.getElementById('tr-list'); trEl.innerHTML = "";
-            if(data.transfer) Object.values(data.transfer).forEach(v => { 
-                const st = v.status || 'İlgileniliyor'; let c = '#38bdf8';
-                if(st === 'Alındı') c = '#10b981'; else if(st === 'Görüşme Aşamasında') c = '#fbbf24'; else if(st === 'Sözleşme Feshedildi' || st === 'Satıldı' || st === 'Reddedildi' || st === 'Yalanlandı') c = '#ef4444'; else if(st === 'Vazgeçildi') c = '#64748b';
-                trEl.innerHTML += `<div class="card transfer-card-style"><span class="badge" style="background:#2563eb">TRANSFER</span><h3>${v.name}</h3><p>${v.desc}</p><span class="status-badge" style="background:${c}">${st.toUpperCase()}</span><small>${v.date}</small></div>`; 
-            });
-
-            const rK = document.getElementById('ekip-kurucu-row'); rK.innerHTML = "";
-            const rY = document.getElementById('ekip-yonetici-row'); rY.innerHTML = "";
-            const rU = document.getElementById('ekip-uye-row'); rU.innerHTML = "";
-            if(data.ekip) Object.values(data.ekip).forEach(v => {
-                const role = v.role || 'Üye';
-                if(role === 'Kurucu') rK.innerHTML += `<div class="card kurucu-style"><span class="badge" style="background:#fbbf24; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-                else if(role === 'Başkan' || role === 'Yönetici') rY.innerHTML += `<div class="card yonetici-style"><span class="badge" style="background:#38bdf8; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-                else rU.innerHTML += `<div class="card personel-style"><span class="badge" style="background:#a78bfa">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-            });
-
-            const aM = document.getElementById('adm-manage'); aM.innerHTML = "";
-            ['duyuru', 'transfer', 'ekip', 'kadro', 'haber'].forEach(t => { if(data[t]) Object.entries(data[t]).forEach(([k, v]) => aM.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.7rem;"><span>[${t.toUpperCase()}] ${v.name}</span><button class="del-btn" onclick="delData('${t}/${k}')">SİL</button></div>`); });
         });
-
-        document.body.addEventListener('click', startMusicEngine, { once: true });
     </script>
 </body>
 </html>
