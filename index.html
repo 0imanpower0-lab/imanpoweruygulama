@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>İman Power FC | İman Powe1r</title>
+    <title>İman Power FC | İman Power</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -53,6 +53,14 @@
         .card { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--border); position: relative; }
         .badge { position: absolute; top: 15px; right: 15px; font-size: 0.7rem; padding: 4px 8px; border-radius: 5px; font-weight: 800; }
 
+        /* --- HABERLER TEK SIRA VE PARAGRAF TASARIMI --- */
+        .haber-single-column { display: flex; flex-direction: column; gap: 25px; max-width: 850px; margin: 0 auto; }
+        .haber-card { background: var(--glass); padding: 25px; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: 0.3s; }
+        .haber-card:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
+        .haber-title { font-family: 'Orbitron'; font-size: 1.4rem; color: #ef4444; font-weight: 900; margin-bottom: 12px; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .haber-text { font-size: 1rem; line-height: 1.7; opacity: 0.95; color: #e2e8f0; text-align: justify; word-wrap: break-word; white-space: pre-line; }
+        .haber-time { font-size: 0.75rem; color: var(--accent); font-weight: bold; display: block; margin-top: 15px; text-align: right; font-family: 'Orbitron'; }
+
         /* --- SAHA --- */
         .pitch-container { width: 100%; overflow-x: auto; padding: 10px 0; }
         .pitch { width: 500px; height: 700px; background: #166534; margin: 0 auto; border: 3px solid #fff; border-radius: 10px; position: relative; }
@@ -69,7 +77,6 @@
         .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; cursor: pointer; display: inline-block; }
         .msg-user:hover { text-decoration: underline; }
         
-        /* Kimin Kimi Etiketlediğini Gösteren Yeni Şeritler */
         .mention-info-bar { font-size: 0.7rem; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 3px 8px; border-radius: 5px; font-weight: 700; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(245, 158, 11, 0.2); }
         .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 1px 4px; border-radius: 4px; font-weight: 700; }
         .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05) !important; }
@@ -85,7 +92,7 @@
         .btn { padding: 12px; border: none; border-radius: 8px; color: #000; font-weight: 800; cursor: pointer; background: var(--accent); width: 100%; transition: 0.3s; }
         .btn:hover { filter: brightness(1.2); }
 
-        /* --- DESTEK & CANLI PLAYLIST SCROLLERS --- */
+        /* --- DESTEK & SCROLLERS --- */
         .user-list-scroller { max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 8px; margin-bottom: 10px; }
         .user-log-scroller { max-height: 150px; overflow-y: auto; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 8px; font-size: 0.75rem; }
         .user-item-row { padding: 6px; background: rgba(255,255,255,0.01); border-radius: 5px; margin-bottom: 4px; font-size: 0.8rem; }
@@ -139,7 +146,7 @@
 
     <section id="haber">
         <h2 class="title">KULÜPTEN HABERLER</h2>
-        <div id="haber-list" class="grid"></div>
+        <div id="haber-list" class="haber-single-column"></div>
     </section>
 
     <section id="kadro">
@@ -391,7 +398,12 @@
             const name = document.getElementById('a-n').value.trim();
             const desc = document.getElementById('a-d').value.trim();
             if(!name) return alert("Başlık boş olamaz!");
-            const payload = { name, desc, date: new Date().toLocaleDateString('tr-TR') };
+            
+            // Saati saatine, saniyesine kadar kaydetme ayarı
+            const simdi = new Date();
+            const tamZaman = simdi.toLocaleDateString('tr-TR') + " - " + simdi.toLocaleTimeString('tr-TR');
+            
+            const payload = { name, desc, date: tamZaman };
             if(type === 'ekip') payload.role = document.getElementById('a-role').value;
             if(type === 'transfer') payload.status = document.getElementById('a-trstatus').value;
             push(ref(db, type), payload).then(() => alert("Canlı Olarak Gönderildi!"));
@@ -468,9 +480,8 @@
             return text.replace(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g, '<span class="mention-tag">@$1</span>');
         }
 
-        const pLoc = { GK: {t:'85%',l:'50%'}, LB: {t:'70%',l:'15%'}, CB1: {t:'70%',l:'38%'}, CB2: {t:'70%',l:'62%'}, RB: {t:'70%',l:'85%'}, LM: {t:'45%',l:'15%'}, CM1: {t:'45%',l:'38%'}, CM2: {t:'45%',l:'62%'}, RM: {t:'45%',l:'85%'}, ST1: {t:'20%',l:'35%'}, ST2: {t:'20%',l:'65%'} };
+        const pLoc = { GK: {t:'85%',l:'50%'}, LB: {t:'70%',l:'15%'}, CB1: {t:'70%',l:'38%'}, CB2: {t:'70%',l:'62%'}, RB: {t:'70%',l:'85%'}, LM: {t:'45%',l:'15%'}, CM1: {t:'45%',l:'38%'}, CB2: {t:'70%',l:'62%'}, CM2: {t:'45%',l:'62%'}, RM: {t:'45%',l:'85%'}, ST1: {t:'20%',l:'35%'}, ST2: {t:'20%',l:'65%'} };
 
-        // İlk Yüklenme Durum Kontrolleri (Girişte Eski Veriler İçin Bildirim Atmasın Diye)
         let firstLoadChat = true;
         let firstLoadHaber = true;
         let firstLoadDuyuru = true;
@@ -546,12 +557,19 @@
             cBox.scrollTop = cBox.scrollHeight;
             firstLoadChat = false;
 
-            // --- HABERLER (BİLDİRİMLİ) ---
+            // --- GÜNCELLENEN HABERLER (EN YENİ EN ÜSTTE - TEK SIRA - TAM SAATLİ PARAGRAF TASARIMI) ---
             const rH = document.getElementById('haber-list'); rH.innerHTML = "";
             if(data.haber) {
                 let sonHaberBaslik = "";
+                // .reverse() kullanarak en yeni eklenen haberi listenin en üstüne aldık!
                 Object.values(data.haber).reverse().forEach(v => {
-                    rH.innerHTML += `<div class="card"><h3>🔥 SON DAKİKA: ${v.name}</h3><p style="margin-top:8px; opacity:0.8;">${v.desc}</p><span style="font-size:0.7rem; color:var(--accent); display:block; margin-top:10px;">📅 ${v.date || ''}</span></div>`;
+                    rH.innerHTML += `
+                        <div class="haber-card">
+                            <div class="haber-title">🔥 FLAŞ HABER: ${v.name}</div>
+                            <div class="haber-text">${v.desc}</div>
+                            <span class="haber-time">⏱️ Yayınlanma Zamanı: ${v.date || ''}</span>
+                        </div>
+                    `;
                     if(!sonHaberBaslik) sonHaberBaslik = v.name;
                 });
                 if(!firstLoadHaber) {
@@ -560,7 +578,7 @@
             }
             firstLoadHaber = false;
 
-            // --- DUYURULAR (BİLDİRİMLİ) ---
+            // --- DUYURULAR ---
             const rD = document.getElementById('duyuru-list'); rD.innerHTML = "";
             if(data.duyuru) {
                 let sonDuyuruBaslik = "";
@@ -580,7 +598,7 @@
                 rT.innerHTML += `<div class="card"><span class="badge" style="background:rgba(16,185,129,0.2); color:var(--accent); border:1px solid var(--border);">${v.status || 'İlgileniliyor'}</span><h3>✈️ ${v.name}</h3><p style="margin-top:8px; opacity:0.8;">${v.desc}</p></div>`;
             });
 
-            // --- EKİP (BİLDİRİMLİ) ---
+            // --- EKİP ---
             const rK = document.getElementById('ekip-kurucu-row'); rK.innerHTML = "";
             const rY = document.getElementById('ekip-yonetici-row'); rY.innerHTML = "";
             const rU = document.getElementById('ekip-uye-row'); rU.innerHTML = "";
@@ -605,7 +623,7 @@
             const saha = document.getElementById('saha'); saha.innerHTML = "";
             if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
 
-            // --- ADMİN PANELİ AKTİFLİK VE AYARLAR ---
+            // --- ADMİN PANELİ AYARLARI ---
             const userBox = document.getElementById('adm-all-users-list');
             if(userBox && data.users) {
                 userBox.innerHTML = "";
