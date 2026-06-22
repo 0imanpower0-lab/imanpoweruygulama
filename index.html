@@ -2,9 +2,25 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İman Power FC | İman Power</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignal.infra.js" defer></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignal.js" defer></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(async function() {
+        await OneSignal.init({
+          appId: "BURAYA_ONESIGNAL_APP_ID_GELECEK", // OneSignal'dan alacağın App ID'yi buraya yapıştır paşam!
+          safari_web_id: "web.onesignal.auto.198305f6-7b04-4cda-92df-dfcce147f2ef",
+          notifyButton: {
+            enable: true,
+          },
+        });
+      });
+    </script>
+
     <style>
         :root {
             --bg: #020617;
@@ -18,7 +34,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* --- GİRİŞ EKRANI --- */
+        /* --- GİRİŞ EKRANI (KAYIT OLMA KAPATILDI - BİLGİLENDİRME METNİ EKLENDİ) --- */
         #auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
         .auth-card { background: var(--glass); padding: 40px; border-radius: 30px; border: 2px solid var(--accent); text-align: center; width: 90%; max-width: 400px; box-shadow: 0 0 40px var(--accent-glow); }
         .auth-card img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 20px; }
@@ -27,12 +43,13 @@
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
         .logo-box { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron'; font-weight: 900; color: var(--accent); cursor: pointer; }
-        .logo-box img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); }
+        .logo-box img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); margin-bottom: 0px; }
         nav { width: auto; overflow: visible; }
         nav ul { display: flex; list-style: none; gap: 5px; flex-wrap: wrap; }
         nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.65rem; padding: 10px 10px; border-radius: 10px; transition: 0.3s; text-transform: uppercase; white-space: nowrap; }
         nav a:hover, nav a.active { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
 
+        /* TELEFONLAR İÇİN REFS_MENÜ DESTEĞİ */
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; gap: 10px; padding: 0.8rem 1rem; }
             nav { width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -83,13 +100,14 @@
         @media (max-width: 768px) { .haber-body h3 { font-size: 1.3rem; } }
         .haber-body p { font-size: 0.98rem; opacity: 0.85; line-height: 1.6; color: #cbd5e1; margin-bottom: 15px; white-space: pre-line; }
         
+        /* REAKSİYON TASARIMI */
         .haber-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
         .reaction-container { display: flex; gap: 8px; flex-wrap: wrap; }
         .reaction-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 12px; color: var(--text); font-size: 0.9rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 5px; font-weight: 600; }
         .reaction-btn:hover { background: rgba(16, 185, 129, 0.1); border-color: var(--accent); }
         .reaction-btn.user-reacted { background: rgba(16, 185, 129, 0.2); border-color: var(--accent); color: var(--accent); }
 
-        /* --- DUYURU & TRANSFER & EKİP GRIDLERİ --- */
+        /* --- DUYURU ÖZEL BÜYÜTÜLMÜŞ GRID --- */
         .duyuru-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         @media (max-width: 480px) { .duyuru-grid { grid-template-columns: 1fr; } }
         .card.duyuru-card-style { padding: 35px; border-left: 4px solid var(--accent); }
@@ -97,6 +115,7 @@
         .card.duyuru-card-style h3 { font-size: 1.5rem; font-family: 'Orbitron'; letter-spacing: 1px; color: var(--text); }
         .card.duyuru-card-style p { font-size: 1rem; line-height: 1.6; margin-top: 15px; opacity: 0.9; }
 
+        /* --- TRANSFER ÖZEL 3'LÜ BÜYÜK GRID --- */
         .transfer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         @media (max-width: 480px) { .transfer-grid { grid-template-columns: 1fr; } }
         @media (min-width: 992px) { .transfer-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -104,6 +123,7 @@
         @media (max-width: 768px) { .card.transfer-card-style { padding: 20px; } }
         .card.transfer-card-style h3 { font-size: 1.4rem; font-family: 'Orbitron'; color: #f8fafc; }
 
+        /* --- EKİP ÖZEL HİYERARŞİ STİLLERİ --- */
         .ekip-container { display: flex; flex-direction: column; gap: 40px; }
         .kurucu-row { display: grid; grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; width: 100%; }
         .yonetici-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 25px; }
@@ -117,7 +137,7 @@
         .card.yonetici-style h3 { font-size: 1.4rem; }
         .card.personel-style { padding: 30px; border-bottom: 4px solid #a78bfa; }
 
-        /* --- SAHA --- */
+        /* --- FUTBOL SAHASI MASAÜSTÜ & MOBİL UYUMU --- */
         .pitch-container { width: 100%; display: flex; justify-content: center; overflow: hidden; padding: 10px 0; }
         .pitch { width: 100%; max-width: 520px; height: 740px; background: #064e3b; margin: 0 auto; border: 4px solid #fff; border-radius: 15px; position: relative; background-image: repeating-linear-gradient(0deg, #064e3b, #064e3b 65px, #065f46 65px, #065f46 130px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); transform-origin: top center; }
         @media (max-width: 540px) { .pitch { transform: scale(0.7); margin-bottom: -220px; } }
@@ -127,23 +147,11 @@
         .shirt { width: 52px; height: 52px; background: var(--accent); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.2rem; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-shadow: 1px 1px 2px #000; }
         .p-name { background: #000; font-size: 0.75rem; padding: 4px 8px; border-radius: 10px; margin-top: 5px; border: 1px solid var(--accent); font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        /* --- CANLI SOHBET & ETİKETLEME STİLLERİ --- */
-        .chat-area { height: 500px; background: var(--glass); border-radius: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+        /* --- CANLI SOHBET --- */
+        .chat-area { height: 500px; background: var(--glass); border-radius: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
         @media (max-width: 768px) { .chat-area { height: 400px; } }
         #chat-msgs { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
-        
-        .msg { background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 15px; border-left: 3px solid #64748b; word-wrap: break-word; }
-        .msg.me { border-left-color: var(--accent); background: rgba(16, 185, 129, 0.05); }
-        .msg-user { color: var(--accent); font-weight: 800; font-size: 0.85rem; cursor: pointer; display: inline-block; }
-        .msg-user:hover { text-decoration: underline; }
-        
-        .mention-info-bar { font-size: 0.7rem; color: #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 3px 8px; border-radius: 5px; font-weight: 700; margin-bottom: 5px; display: inline-block; border: 1px solid rgba(245, 158, 11, 0.2); }
-        .mention-tag { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 1px 4px; border-radius: 4px; font-weight: 700; border: 1px solid rgba(245, 158, 11, 0.4); }
-        .msg.mentioned { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.1) !important; box-shadow: 0 0 10px rgba(245, 158, 11, 0.1); }
-
-        #mention-suggestions { position: absolute; bottom: 70px; left: 15px; right: 15px; background: #0f172a; border: 1px solid var(--accent); border-radius: 10px; max-height: 120px; overflow-y: auto; display: none; z-index: 100; box-shadow: 0 -5px 15px rgba(0,0,0,0.5); }
-        .suggestion-item { padding: 10px 15px; cursor: pointer; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .suggestion-item:hover { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        .msg { background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 15px; border-left: 3px solid var(--accent); }
 
         /* --- ADMİN PANELİ --- */
         input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #1e293b; background: #0f172a; color: white; font-size: 1rem; }
@@ -153,9 +161,11 @@
         .admin-box-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .del-btn { background: #ef4444; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.7rem; border: none; color: white; }
         
+        /* --- CANLI DESTEK & EĞLENCE ODASI YÖNLENDİRME ALANLARI --- */
         .live-support-box { background: var(--glass); max-width: 650px; margin: 0 auto; padding: 40px; border-radius: 24px; border: 2px solid #3b82f6; text-align: center; box-shadow: 0 10px 35px rgba(59, 130, 246, 0.2); }
         @media (max-width: 768px) { .live-support-box { padding: 20px; } }
 
+        /* YENİ EKLENEN KULLANICI TAKİP VE AKTİFLİK PANEL STİLLERİ */
         .user-list-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.4); padding: 8px; border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
         .user-log-scroller { max-height: 180px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 8px; border-radius: 10px; font-size: 0.75rem; border: 1px solid rgba(255,255,255,0.05); }
         .user-item-row { display: flex; flex-direction: column; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 6px; font-size: 0.8rem; border-left: 3px solid #64748b; }
@@ -170,7 +180,7 @@
 
     <div id="auth-screen">
         <div class="auth-card">
-            <img src="logo.png" alt="Logo" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
+            <img src="logo.png" alt="Logo">
             <h2 id="auth-title" style="margin-bottom:20px; font-family:'Orbitron'; color:var(--accent); letter-spacing: 2px;">SİSTEME GİRİŞ</h2>
             <input type="text" id="u-in" placeholder="Kullanıcı Adı">
             <input type="password" id="p-in" placeholder="Şifre">
@@ -185,7 +195,7 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo-box" onclick="nav('home')"><img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'"><span>İMAN POWER</span></div>
+            <div class="logo-box" onclick="nav('home')"><img src="logo.png"><span>İMAN POWER</span></div>
             <nav><ul>
                 <li><a href="#" onclick="nav('home')" class="n-l active">ANA SAYFA</a></li>
                 <li><a href="#" onclick="nav('haber')" class="n-l">HABERLER</a></li>
@@ -203,7 +213,7 @@
 
     <section id="home" class="active">
         <div id="home-content">
-            <img src="logo.png" onerror="this.src='https://raw.githubusercontent.com/0imanpower0-lab/imanpoweruygulama/main/logo.png'">
+            <img src="logo.png">
             <h1>BERAT CİHAD YETEN</h1>
             <p style="color:var(--accent); font-weight:900; letter-spacing:4px; font-size: 1.3rem;">KURUCU VE BAŞKAN</p>
             <p style="font-style:italic; margin-top:25px; font-size: 1.5rem; color: #94a3b8; font-weight:600;">"Sahada İman, Kalpte Güç, Hedef Şampiyonluk!"</p>
@@ -226,9 +236,8 @@
         <h2 class="title">CANLI TRİBÜN SOHBETİ</h2>
         <div class="chat-area">
             <div id="chat-msgs"></div>
-            <div id="mention-suggestions"></div>
             <div style="display:flex; padding:15px; gap:10px; background:rgba(0,0,0,0.4);">
-                <input type="text" id="m-in" placeholder="Mesaj gönder... (@ yazarak etiketle)" style="margin:0;" oninput="handleChatInput(this)">
+                <input type="text" id="m-in" placeholder="Mesaj gönder..." style="margin:0;">
                 <button class="btn" style="width:120px;" onclick="send()">GÖNDER</button>
             </div>
         </div>
@@ -371,7 +380,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, set, remove, onDisconnect } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        // VERİTABANI BAĞLANTISI KORUNDU
         const firebaseConfig = {
             apiKey: "AIzaSyDy4ZUv_wZsntWSIDbcOlvpqDTBvWuSdrk",
             authDomain: "imanpowerveri.firebaseapp.com",
@@ -386,7 +394,6 @@
         const db = getDatabase(app);
 
         let user = "";
-        let allRegisteredUsers = [];
         let ytPlayer = null;
         let audioPlayer = null;
         let currentMusicId = "";
@@ -396,25 +403,33 @@
         let userLocationDataStr = "Yükleniyor...";
         let globalIpAddress = "Bulunuyor...";
 
-        // BİLDİRİM HAFIZA SAYAÇLARI (Sayfa yenilendiğinde eski verilere bildirim atmayı engeller)
-        let prevChatCount = -1;
-        let prevHaberCount = -1;
-        let prevDuyuruCount = -1;
-        let prevEkipCount = -1;
-        let prevTransferCount = -1;
+        // ONESIGNAL BİLDİRİM GÖNDERME MOTORU
+        async function sendPushNotification(title, message) {
+            try {
+                const appId = "BURAYA_ONESIGNAL_APP_ID_GELECEK"; // OneSignal'dan alacağın App ID'yi buraya da yapıştır paşam!
+                if (appId === "BURAYA_ONESIGNAL_APP_ID_GELECEK") return;
 
-        // MOBİL APK BİLDİRİM MOTORU
-        function setupNotifications() {
-            if ("Notification" in window) { Notification.requestPermission(); }
-        }
-
-        function triggerLocalNotification(title, body) {
-            if ("Notification" in window && Notification.permission === "granted") {
-                new Notification(title, { body: body, icon: 'logo.png' });
+                await fetch("https://onesignal.com/api/v1/notifications", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Basic " // İhtiyaç duyulursa REST API Key buraya girilebilir ama Web Push için boş kalabilir
+                    },
+                    body: JSON.stringify({
+                        app_id: appId,
+                        included_segments: ["All Users"],
+                        headings: { "en": title, "tr": title },
+                        contents: { "en": message, "tr": message },
+                        headings: { "tr": title },
+                        contents: { "tr": message }
+                    })
+                });
+            } catch (e) {
+                console.log("Bildirim gönderilemedi:", e);
             }
         }
 
-        // IP VE KONUM MOTORU KORUNDU
+        // 1. GERÇEK DIŞ IP ADRESİ VE DETAYLI KONUM BULUCU MOTORU
         function fetchExactLocationAndIp() {
             fetch('https://api.ipify.org?format=json')
                 .then(res => res.json())
@@ -448,10 +463,13 @@
                     userLocationDataStr = "IP ve Konum Çözülemedi.";
                 });
         }
+
         fetchExactLocationAndIp();
 
         function startMusicEngine() {
-            if (currentMusicId) { playMusic(currentMusicId, currentVolume); }
+            if (currentMusicId) {
+                playMusic(currentMusicId, currentVolume);
+            }
         }
 
         function setUserPresence(username, isOnline) {
@@ -483,7 +501,6 @@
                 if(snap.exists() && snap.val().password === password) { 
                     user = username; 
                     document.getElementById('auth-screen').style.display = 'none'; 
-                    setupNotifications(); // Bildirimleri aç
                     
                     setUserPresence(username, true);
                     push(ref(db, 'user_logs'), {
@@ -507,14 +524,15 @@
             }, { onlyOnce: true });
         };
 
-        setInterval(() => { if(user) setUserPresence(user, true); }, 120000);
+        setInterval(() => {
+            if(user) setUserPresence(user, true);
+        }, 120000);
 
         window.nav = (id) => {
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.n-l').forEach(l => l.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             if(event && event.target.classList.contains('n-l')) event.target.classList.add('active');
-            document.getElementById('mention-suggestions').style.display = 'none';
             if(user) setUserPresence(user, true);
         };
 
@@ -532,11 +550,15 @@
         };
 
         window.deleteUserFromAdmin = (username) => {
-            if(confirm(`${username} adlı kullanıcıyı tamamen silmek istiyor musun?`)) { remove(ref(db, 'users/' + username)); }
+            if(confirm(`${username} adlı kullanıcıyı tamamen silmek istiyor musun?`)) {
+                remove(ref(db, 'users/' + username));
+            }
         };
 
         window.clearAllSystemLogs = () => {
-            if(confirm("Tüm sistem log geçmişini temizlemek istiyor musunuz?")) { remove(ref(db, 'user_logs')); }
+            if(confirm("Tüm sistem log geçmişini temizlemek istiyor musunuz?")) {
+                remove(ref(db, 'user_logs'));
+            }
         };
 
         window.checkType = (val) => {
@@ -550,7 +572,10 @@
             const num = document.getElementById('p-num-input').value.trim();
             const pos = document.getElementById('p-pos-input').value;
             if(!name || !num) return alert("Eksik!");
-            set(ref(db, 'kadro/' + pos), { name, num, pos }).then(() => alert("Oyuncu yerleştirildi!"));
+            set(ref(db, 'kadro/' + pos), { name, num, pos }).then(() => {
+                alert("Oyuncu yerleştirildi!");
+                sendPushNotification("🏃 Kadro Güncellendi!", `${name} sahaya yerleştirildi!`);
+            });
         };
 
         window.saveData = () => {
@@ -562,77 +587,42 @@
             if(type === 'ekip') payload.role = document.getElementById('a-role').value;
             if(type === 'transfer') payload.status = document.getElementById('a-trstatus').value;
             if(type === 'haber') { payload.topic = document.getElementById('a-h-topic').value || "Genel"; payload.img = document.getElementById('a-h-img').value || "logo.png"; }
-            push(ref(db, type), payload).then(() => alert("Başarıyla eklendi!"));
+            
+            push(ref(db, type), payload).then(() => {
+                alert("Başarıyla eklendi!");
+                
+                // İçerik ekleme bildirimleri tetikleniyor
+                if(type === 'haber') sendPushNotification("🔥 KULÜPTEN YENİ HABER!", name);
+                else if(type === 'duyuru') sendPushNotification("🚨 YENİ DUYURU!", name);
+                else if(type === 'transfer') sendPushNotification("⚽ TRANSFER MERKEZİ!", `${name} -> ${payload.status}`);
+            });
         };
 
         window.delData = (path) => { if(confirm("Silinsin mi?")) remove(ref(db, path)); };
-
-        // --- GELİŞMİŞ ETİKETLEME FONKSİYONLARI ---
-        window.handleChatInput = (inputEl) => {
-            const val = inputEl.value;
-            const cursorPosition = inputEl.selectionStart;
-            const textBeforeCursor = val.substring(0, cursorPosition);
-            const words = textBeforeCursor.split(/\s/);
-            const lastWord = words[words.length - 1];
-
-            if (lastWord.startsWith('@')) {
-                const searchName = lastWord.substring(1).toLowerCase();
-                const filtered = allRegisteredUsers.filter(u => u.toLowerCase().includes(searchName));
-                showMentionSuggestions(filtered);
-            } else {
-                document.getElementById('mention-suggestions').style.display = 'none';
-            }
-        };
-
-        function showMentionSuggestions(usersList) {
-            const box = document.getElementById('mention-suggestions');
-            if (usersList.length === 0) { box.style.display = 'none'; return; }
-            box.innerHTML = "";
-            usersList.forEach((uName) => {
-                const div = document.createElement('div');
-                div.className = "suggestion-item";
-                div.innerHTML = `⚽ <span>@${uName}</span>`;
-                div.onclick = () => selectUserMention(uName);
-                box.appendChild(div);
-            });
-            box.style.display = 'block';
-        }
-
-        function selectUserMention(uName) {
-            const inputEl = document.getElementById('m-in');
-            const val = inputEl.value;
-            const cursorPosition = inputEl.selectionStart;
-            const textBeforeCursor = val.substring(0, cursorPosition);
-            const textAfterCursor = val.substring(cursorPosition);
-            const words = textBeforeCursor.split(/\s/);
-            words[words.length - 1] = `@${uName} `;
-            inputEl.value = words.join(' ') + textAfterCursor;
-            document.getElementById('mention-suggestions').style.display = 'none';
-            inputEl.focus();
-        }
-
-        window.appendMentionFromClick = (uName) => {
-            const inputEl = document.getElementById('m-in');
-            inputEl.value += `@${uName} `;
-            nav('sohbet');
-            inputEl.focus();
-        };
-
-        function formatMessageText(text) {
-            return text.replace(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g, '<span class="mention-tag">@$1</span>');
-        }
 
         window.send = () => {
             const m = document.getElementById('m-in').value.trim();
             if(m) { 
                 push(ref(db, 'chat'), { u: user, m: m }); 
                 document.getElementById('m-in').value=''; 
-                document.getElementById('mention-suggestions').style.display = 'none';
+                
+                // Mesaj etiketleme kontrolü ve bildirimi
+                if (m.includes('@')) {
+                    const words = m.split(' ');
+                    words.forEach(word => {
+                        if (word.startsWith('@') && word.length > 1) {
+                            const targetUser = word.substring(1).toLowerCase();
+                            sendPushNotification("🚨 Biri Seni Etiketledi!", `@${user} sohbette senden bahsetti.`);
+                        }
+                    });
+                } else {
+                    sendPushNotification(`💬 Yeni Mesaj (@${user})`, m.substring(0, 60));
+                }
             }
             if(user) setUserPresence(user, true);
         };
 
-        // --- MÜZİK SİSTEMİ KORUNDU ---
+        // PLAYLIST KONTROLLERİ
         window.updateLivePlaylist = () => {
             const rawText = document.getElementById('adm-playlist-urls').value.trim();
             if(!rawText) return alert("Lütfen en az bir ID veya link girin!");
@@ -648,13 +638,20 @@
             }).then(() => alert("Çalma listesi tüm sitede başlatıldı!"));
         };
 
-        window.stopLiveMusic = () => { set(ref(db, 'liveMusic/status'), "stopped").then(() => alert("Müzik tüm sitede durduruldu!")); };
+        window.stopLiveMusic = () => {
+            set(ref(db, 'liveMusic/status'), "stopped").then(() => alert("Müzik tüm sidede durduruldu!"));
+        };
 
-        window.updateLiveVolume = (vol) => { set(ref(db, 'liveMusic/volume'), parseInt(vol)); };
+        window.updateLiveVolume = (vol) => {
+            set(ref(db, 'liveMusic/volume'), parseInt(vol));
+        };
 
         function handleTrackEnd() {
             let nextIndex = currentTrackIndex + 1;
-            if (nextIndex >= activePlaylistTracks.length) { nextIndex = 0; }
+            if (nextIndex >= activePlaylistTracks.length) {
+                nextIndex = 0; 
+            }
+            
             if (activePlaylistTracks[nextIndex]) {
                 set(ref(db, 'liveMusic/currentIndex'), nextIndex);
                 set(ref(db, 'liveMusic/currentTrack'), activePlaylistTracks[nextIndex]);
@@ -662,6 +659,7 @@
             }
         }
 
+        // MÜZİK MOTORU - YENİLENEN MP3 VE YOUTUBE MOTORU
         function playMusic(trackId, volume) {
             if (!user) return;
             const container = document.getElementById('music-player-container');
@@ -672,9 +670,10 @@
                 return;
             }
 
+            // MP3 Oynatma Kontrolü
             if (trackId.includes('.mp3') || trackId.includes('http://') || trackId.includes('https://')) {
                 if (ytPlayer) { try { ytPlayer.destroy(); } catch(e){} ytPlayer = null; }
-                container.innerHTML = ""; 
+                container.innerHTML = ""; // Frame alanını temizle
 
                 if (!audioPlayer) {
                     audioPlayer = new Audio(trackId);
@@ -683,21 +682,38 @@
                     audioPlayer.src = trackId;
                 }
                 audioPlayer.volume = volume / 100;
-                audioPlayer.play().catch(e => console.log("Etkileşim bekleniyor."));
-            } else {
+                audioPlayer.play().catch(e => console.log("Müzik tetikleme tarayıcı tarafından engellendi, etkileşim bekleniyor."));
+            } 
+            // YouTube Oynatma Kontrolü
+            else {
                 if (audioPlayer) { audioPlayer.pause(); audioPlayer = null; }
                 container.innerHTML = `<div id="yt-player-frame"></div>`;
                 
                 try {
                     ytPlayer = new YT.Player('yt-player-frame', {
-                        height: '0', width: '0', videoId: trackId,
-                        playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0 },
+                        height: '0',
+                        width: '0',
+                        videoId: trackId,
+                        playerVars: {
+                            'autoplay': 1,
+                            'controls': 0,
+                            'rel': 0
+                        },
                         events: {
-                            'onReady': (event) => { event.target.setVolume(volume); event.target.playVideo(); },
-                            'onStateChange': (event) => { if (event.data === 0) { handleTrackEnd(); } }
+                            'onReady': (event) => {
+                                event.target.setVolume(volume);
+                                event.target.playVideo();
+                            },
+                            'onStateChange': (event) => {
+                                if (event.data === 0) {
+                                    handleTrackEnd();
+                                }
+                            }
                         }
                     });
-                } catch(e) { console.log("YouTube API yükleniyor..."); }
+                } catch(e) {
+                    console.log("YouTube API yükleniyor...");
+                }
             }
         }
 
@@ -722,51 +738,50 @@
 
         const pLoc = { GK: {t:'88%',l:'50%'}, LB: {t:'68%',l:'15%'}, CB1: {t:'68%',l:'38%'}, CB2: {t:'68%',l:'62%'}, RB: {t:'68%',l:'85%'}, LM: {t:'43%',l:'15%'}, CM1: {t:'43%',l:'38%'}, CM2: {t:'43%',l:'62%'}, RM: {t:'43%',l:'85%'}, ST1: {t:'16%',l:'35%'}, ST2: {t:'16%',l:'65%'} };
 
-        // CANLI İZLEME VE VERİ ÇEKME - BİLDİRİM SİSTEMİ BURAYA ENTEGRE EDİLDİ
         onValue(ref(db, '/'), (snap) => {
             const data = snap.val() || {};
-            if(data.users) { allRegisteredUsers = Object.keys(data.users); }
             
-            // Kullanıcı Durumları
             const userBox = document.getElementById('adm-all-users-list');
-            if(userBox && data.users) {
+            if(userBox) {
                 userBox.innerHTML = "";
-                Object.entries(data.users).forEach(([uName, uData]) => {
-                    const presence = uData.presence || { status: 'offline' };
-                    const isOnline = presence.status === 'online';
-                    const badgeColor = isOnline ? '#10b981' : '#64748b';
-                    const badgeText = isOnline ? 'Aktif 🟢' : 'Çevrimdışı 🔴';
-                    const locInfo = presence.address || 'Konum Alınamadı';
-                    const lastTime = presence.lastActive || 'Kayıt Yok';
+                if(data.users) {
+                    Object.entries(data.users).forEach(([uName, uData]) => {
+                        const presence = uData.presence || {};
+                        const isOnline = presence.status === 'online';
+                        const badgeColor = isOnline ? '#10b981' : '#64748b';
+                        const badgeText = isOnline ? 'Aktif 🟢' : 'Çevrimdışı 🔴';
+                        const locInfo = presence.address || 'Konum Alınamadı';
+                        const lastTime = presence.lastActive || 'Kayıt Yok';
 
-                    userBox.innerHTML += `
-                        <div class="user-item-row ${isOnline ? 'online-status' : ''}">
-                            <div class="user-item-top">
-                                <span>👤 <b>${uName}</b></span>
-                                <span style="color:${badgeColor}; font-weight:bold; font-size:0.75rem;">${badgeText}</span>
-                            </div>
-                            <div style="font-size:0.7rem; color:#cbd5e1; margin-top:2px;">📍 ${locInfo}</div>
-                            <div style="font-size:0.65rem; opacity:0.6; display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-                                <span>🕒 Son Hareket: ${lastTime}</span>
-                                <button class="del-btn" style="padding:2px 6px; font-size:0.65rem;" onclick="deleteUserFromAdmin('${uName}')">SİL</button>
-                            </div>
-                        </div>`;
-                });
+                        userBox.innerHTML += `
+                            <div class="user-item-row ${isOnline ? 'online-status' : ''}">
+                                <div class="user-item-top">
+                                    <span>👤 <b>${uName}</b></span>
+                                    <span style="color:${badgeColor}; font-weight:bold; font-size:0.75rem;">${badgeText}</span>
+                                </div>
+                                <div style="font-size:0.7rem; color:#cbd5e1; margin-top:2px;">📍 ${locInfo}</div>
+                                <div style="font-size:0.65rem; opacity:0.6; display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                                    <span>🕒 Son Hareket: ${lastTime}</span>
+                                    <button class="del-btn" style="padding:2px 6px; font-size:0.65rem;" onclick="deleteUserFromAdmin('${uName}')">SİL</button>
+                                </div>
+                            </div>`;
+                    });
+                }
             }
 
-            // Loglar
             const logBox = document.getElementById('adm-system-logs-box');
-            if(logBox && data.user_logs) {
+            if(logBox) {
                 logBox.innerHTML = "";
-                Object.values(data.user_logs).reverse().forEach(log => {
-                    logBox.innerHTML += `
-                        <div class="log-item-row">
-                            🕒 ${log.timestamp} | <b>${log.username}</b> -> <span style="color:${log.action.includes('❌') ? '#ef4444' : '#10b981'}">${log.action}</span> <br> <span style="opacity:0.4; font-size:0.65rem;">(${log.device})</span>
-                        </div>`;
-                });
+                if(data.user_logs) {
+                    Object.values(data.user_logs).reverse().forEach(log => {
+                        logBox.innerHTML += `
+                            <div class="log-item-row">
+                                🕒 ${log.timestamp} | <b>${log.username}</b> -> <span style="color:${log.action.includes('❌') ? '#ef4444' : '#10b981'}">${log.action}</span> <br> <span style="opacity:0.4; font-size:0.65rem;">(${log.device})</span>
+                            </div>`;
+                    });
+                }
             }
 
-            // Canlı Müzik
             if (data.liveMusic) {
                 const track = data.liveMusic.currentTrack || "";
                 const vol = data.liveMusic.volume !== undefined ? data.liveMusic.volume : 50;
@@ -799,65 +814,16 @@
                 }
             }
 
-            // Kadro
             const saha = document.getElementById('saha'); saha.innerHTML = "";
             if(data.kadro) Object.values(data.kadro).forEach(p => { if(pLoc[p.pos]) saha.innerHTML += `<div class="player" style="top:${pLoc[p.pos].t}; left:${pLoc[p.pos].l}"><div class="shirt">${p.num}</div><div class="p-name">${p.name}</div></div>`; });
-            
-            // --- CANLI CHAT (BİLDİRİM ENTEGRELİ) ---
             const cBox = document.getElementById('chat-msgs'); cBox.innerHTML = "";
-            if(data.chat) {
-                const chatArr = Object.values(data.chat);
-                const currentChatCount = chatArr.length;
-                let sonMesaj = "";
-                let sonYazan = "";
-
-                chatArr.forEach(m => { 
-                    const matches = m.m.match(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g);
-                    let targetUsers = matches ? matches.map(x => x.substring(1).toLowerCase()) : [];
-                    const isMentioned = targetUsers.includes(user.toLowerCase());
-                    const msgClass = m.u === user ? 'msg me' : (isMentioned ? 'msg mentioned' : 'msg');
-                    const formattedText = formatMessageText(m.m);
-                    
-                    let targetInfoHTML = "";
-                    if(targetUsers.length > 0) {
-                        targetInfoHTML = `<div class="mention-info-bar">📣 @${m.u} kullanıcısı, @${targetUsers.join(', @')} kişisini etiketledi!</div>`;
-                    }
-
-                    cBox.innerHTML += `
-                        <div class="${msgClass}">
-                            ${targetInfoHTML}
-                            <div style="display:block;">
-                                <div class="msg-user" onclick="appendMentionFromClick('${m.u}')">@${m.u || 'Anonim'}</div>
-                                <span style="font-size:0.75rem; color:#94a3b8; margin-left:5px;">mesaj attı:</span>
-                            </div>
-                            <div style="margin-top:4px;">${formattedText}</div>
-                        </div>
-                    `;
-                    sonMesaj = m.m;
-                    sonYazan = m.u;
-                });
-
-                if(prevChatCount !== -1 && currentChatCount > prevChatCount && sonYazan !== user) {
-                    const matches = sonMesaj.match(/@([a-zA-Z0-9çıüğşöİÇİÜĞŞÖ]+)/g);
-                    let targetUsers = matches ? matches.map(x => x.substring(1).toLowerCase()) : [];
-                    if (targetUsers.includes(user.toLowerCase())) {
-                        triggerLocalNotification(`🚨 @${sonYazan} Seni Etiketledi!`, `${sonYazan}: ${sonMesaj}`);
-                    } else {
-                        triggerLocalNotification(`💬 Yeni Mesaj (@${sonYazan})`, `${sonYazan}: ${sonMesaj}`);
-                    }
-                }
-                prevChatCount = currentChatCount;
-            } else { prevChatCount = 0; }
+            if(data.chat) Object.values(data.chat).forEach(m => { cBox.innerHTML += `<div class="msg"><b>${m.u || 'Anonim'}:</b> ${m.m}</div>`; });
             cBox.scrollTop = cBox.scrollHeight;
             
-            // --- HABERLER (BİLDİRİM ENTEGRELİ, REAKSİYONLAR KORUNDU) ---
             const hbEl = document.getElementById('haber-list'); hbEl.innerHTML = "";
             if(data.haber) {
-                const haberArray = Object.entries(data.haber);
-                const currentHaberCount = haberArray.length;
-                let sonHaberBaslik = "";
-
-                haberArray.reverse().forEach(([id, val]) => {
+                const haberArray = Object.entries(data.haber).reverse();
+                haberArray.forEach(([id, val]) => {
                     const reacts = val.reactions || {};
                     const emoCounts = { '😎': 0, '✅': 0, '😲': 0, '😡': 0, '😂': 0 };
                     const emoActive = { '😎': '', '✅': '', '😲': '', '😡': '', '😂': '' };
@@ -890,81 +856,32 @@
                                 </div>
                             </div>
                         </div>`;
-                    
-                    if(!sonHaberBaslik) sonHaberBaslik = val.name;
                 });
+            }
 
-                if(prevHaberCount !== -1 && currentHaberCount > prevHaberCount) {
-                    triggerLocalNotification("🔥 KULÜPTEN YENİ HABER!", sonHaberBaslik);
-                }
-                prevHaberCount = currentHaberCount;
-            } else { prevHaberCount = 0; }
-
-            // --- DUYURULAR (BİLDİRİM ENTEGRELİ) ---
             const dyEl = document.getElementById('duyuru-list'); dyEl.innerHTML = "";
-            if(data.duyuru) {
-                const duyuruArr = Object.values(data.duyuru);
-                const currentDuyuruCount = duyuruArr.length;
-                let sonDuyuruBaslik = "";
-
-                duyuruArr.reverse().forEach(val => { 
-                    dyEl.innerHTML += `<div class="card duyuru-card-style"><span class="badge">DUYURU</span><h3>${val.name}</h3><p>${val.desc}</p><small>${val.date}</small></div>`; 
-                    if(!sonDuyuruBaslik) sonDuyuruBaslik = val.name;
-                });
-
-                if(prevDuyuruCount !== -1 && currentDuyuruCount > prevDuyuruCount) {
-                    triggerLocalNotification("📢 YENİ DUYURU!", sonDuyuruBaslik);
-                }
-                prevDuyuruCount = currentDuyuruCount;
-            } else { prevDuyuruCount = 0; }
+            if(data.duyuru) Object.values(data.duyuru).forEach(val => { dyEl.innerHTML += `<div class="card duyuru-card-style"><span class="badge">DUYURU</span><h3>${val.name}</h3><p>${val.desc}</p><small>${val.date}</small></div>`; });
             
-            // --- TRANSFER (BİLDİRİM ENTEGRELİ) ---
             const trEl = document.getElementById('tr-list'); trEl.innerHTML = "";
-            if(data.transfer) {
-                const transferArr = Object.values(data.transfer);
-                const currentTransferCount = transferArr.length;
-                let sonTransferBaslik = "";
+            if(data.transfer) Object.values(data.transfer).forEach(v => { 
+                const st = v.status || 'İlgileniliyor'; 
+                let c = '#38bdf8';
+                if(st === 'Alındı') c = '#10b981';
+                else if(st === 'Görüşme Aşamasında') c = '#fbbf24';
+                else if(st === 'Sözleşme Feshedildi' || st === 'Satıldı' || st === 'Reddedildi' || st === 'Yalanlandı') c = '#ef4444';
+                else if(st === 'Vazgeçildi') c = '#64748b';
+                trEl.innerHTML += `<div class="card transfer-card-style"><span class="badge" style="background:#2563eb">TRANSFER</span><h3>${v.name}</h3><p>${v.desc}</p><span class="status-badge" style="background:${c}">${st.toUpperCase()}</span><small>${v.date}</small></div>`; 
+            });
 
-                transferArr.reverse().forEach(v => { 
-                    const st = v.status || 'İlgileniliyor'; 
-                    let c = '#38bdf8';
-                    if(st === 'Alındı') c = '#10b981';
-                    else if(st === 'Görüşme Aşamasında') c = '#fbbf24';
-                    else if(st === 'Sözleşme Feshedildi' || st === 'Satıldı' || st === 'Reddedildi' || st === 'Yalanlandı') c = '#ef4444';
-                    else if(st === 'Vazgeçildi') c = '#64748b';
-                    trEl.innerHTML += `<div class="card transfer-card-style"><span class="badge" style="background:#2563eb">TRANSFER</span><h3>${v.name}</h3><p>${v.desc}</p><span class="status-badge" style="background:${c}">${st.toUpperCase()}</span><small>${v.date}</small></div>`; 
-                    if(!sonTransferBaslik) sonTransferBaslik = v.name;
-                });
-
-                if(prevTransferCount !== -1 && currentTransferCount > prevTransferCount) {
-                    triggerLocalNotification("✈️ YENİ TRANSFER GELİŞMESİ!", sonTransferBaslik);
-                }
-                prevTransferCount = currentTransferCount;
-            } else { prevTransferCount = 0; }
-
-            // --- EKİP (BİLDİRİM ENTEGRELİ) ---
             const rK = document.getElementById('ekip-kurucu-row'); rK.innerHTML = "";
             const rY = document.getElementById('ekip-yonetici-row'); rY.innerHTML = "";
             const rU = document.getElementById('ekip-uye-row'); rU.innerHTML = "";
-            if(data.ekip) {
-                const ekipArr = Object.values(data.ekip);
-                const currentEkipCount = ekipArr.length;
-                let sonEkipBaslik = "";
-
-                ekipArr.forEach(v => {
-                    const role = v.role || 'Üye';
-                    if(role === 'Kurucu') rK.innerHTML += `<div class="card kurucu-style"><span class="badge" style="background:#fbbf24; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-                    else if(role === 'Başkan' || role === 'Yönetici') rY.innerHTML += `<div class="card yonetici-style"><span class="badge" style="background:#38bdf8; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-                    else rU.innerHTML += `<div class="card personel-style"><span class="badge" style="background:#a78bfa">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
-                    sonEkipBaslik = v.name + " (" + role + ")";
-                });
-
-                if(prevEkipCount !== -1 && currentEkipCount > prevEkipCount) {
-                    triggerLocalNotification("👤 YENİ PERSONEL EKLENDİ!", sonEkipBaslik);
-                }
-                prevEkipCount = currentEkipCount;
-            } else { prevEkipCount = 0; }
-
+            if(data.ekip) Object.values(data.ekip).forEach(v => {
+                const role = v.role || 'Üye';
+                if(role === 'Kurucu') rK.innerHTML += `<div class="card kurucu-style"><span class="badge" style="background:#fbbf24; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+                else if(role === 'Başkan' || role === 'Yönetici') rY.innerHTML += `<div class="card yonetici-style"><span class="badge" style="background:#38bdf8; color:#000;">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+                else rU.innerHTML += `<div class="card personel-style"><span class="badge" style="background:#a78bfa">${role.toUpperCase()}</span><h3>${v.name}</h3><p>${v.desc}</p></div>`;
+            });
             const aM = document.getElementById('adm-manage'); aM.innerHTML = "";
             ['duyuru', 'transfer', 'ekip', 'kadro', 'haber'].forEach(t => { if(data[t]) Object.entries(data[t]).forEach(([k, v]) => aM.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.7rem;"><span>[${t.toUpperCase()}] ${v.name}</span><button class="del-btn" onclick="delData('${t}/${k}')">SİL</button></div>`); });
         });
